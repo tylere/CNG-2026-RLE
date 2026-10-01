@@ -1023,3 +1023,56 @@ $body-bg: #1D232B;
 .reveal .deep-copy p {
   margin: 0;
 }
+
+/* === Ecologists (measure slide) ===
+   Two field scientists walk in from the sides, then stand and work.
+   eco-l walks from left; eco-r walks from right (already scale(-1,1) in SVG). */
+.reveal svg.eco .ecologist { opacity: 0; }
+
+.reveal .slides section.present svg.eco .ecologist.eco-l {
+  animation: eco-enter-left 55s linear 2.5s both;
+}
+
+.reveal .slides section.present svg.eco .ecologist.eco-r {
+  animation: eco-enter-right 55s linear 4.5s both;
+}
+
+@keyframes eco-enter-left {
+  0%     { opacity: 0; transform: translateX(-640px); }
+  2%     { opacity: 1; }
+  22%    { opacity: 1; transform: translateX(0); }
+  100%   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes eco-enter-right {
+  0%     { opacity: 0; transform: translateX(-640px); }
+  2%     { opacity: 1; }
+  22%    { opacity: 1; transform: translateX(0); }
+  100%   { opacity: 1; transform: translateX(0); }
+}
+
+/* Writing arm: slow oscillation mimicking pencil strokes */
+.reveal .slides section.present svg.eco .eco-write {
+  animation: eco-write 1.8s ease-in-out 15s infinite both;
+}
+
+@keyframes eco-write {
+  0%, 100%  { transform: translate(0, 0); }
+  25%       { transform: translate(-3px, -4px); }
+  50%       { transform: translate(4px, -2px); }
+  75%       { transform: translate(-2px, 3px); }
+}
+
+/* Camera flash: brief white rectangle flicker */
+.reveal svg.eco .cam-flash { opacity: 0; }
+
+.reveal .slides section.present svg.eco .cam-flash {
+  animation: cam-flash 10s ease-out 16s infinite both;
+}
+
+@keyframes cam-flash {
+  0%, 4%, 100% { opacity: 0; }
+  1%           { opacity: 0.9; }
+  2%           { opacity: 0; }
+  3%           { opacity: 0.7; }
+}
