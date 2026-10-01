@@ -942,6 +942,13 @@ $body-bg: #1D232B;
   to   { transform: rotate(18deg); }
 }
 
+/* Porcupine ambles right-to-left, passing the skunk */
+.reveal svg.eco .porcupine { opacity: 0; }
+
+.reveal .slides section.present svg.eco .porcupine {
+  animation: skunk-walk 75s linear 8s infinite both;
+}
+
 /* Birds */
 .reveal svg.eco .bird {
   fill: none;
