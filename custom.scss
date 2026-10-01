@@ -1,0 +1,1018 @@
+/*-- scss:defaults --*/
+$font-family-sans-serif: 'iA Writer Quattro S', sans-serif;
+$presentation-slide-text-align: left;
+$presentation-h1-font-size: 2.5em;
+$presentation-h2-font-size: 1.8em;
+$body-bg: #1D232B;
+
+/*-- scss:rules --*/
+
+/* Brand fonts load from the Radiant Earth font CDN, per the CNG brand kit.
+   Berkeley Mono is licensed: reference it by URL, never commit the files. */
+@font-face {
+  font-family: 'iA Writer Quattro S';
+  src: url('https://assets.radiant.earth/fonts/iAWriterQuattroS-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'iA Writer Quattro S';
+  src: url('https://assets.radiant.earth/fonts/iAWriterQuattroS-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'iA Writer Quattro S';
+  src: url('https://assets.radiant.earth/fonts/iAWriterQuattroS-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'iA Writer Quattro S';
+  src: url('https://assets.radiant.earth/fonts/iAWriterQuattroS-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src: url('https://assets.radiant.earth/fonts/BerkeleyMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src: url('https://assets.radiant.earth/fonts/BerkeleyMono-Oblique.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src: url('https://assets.radiant.earth/fonts/BerkeleyMono-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src: url('https://assets.radiant.earth/fonts/BerkeleyMono-Bold-Oblique.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+.reveal {
+  color: #F2F4F6;
+  font-family: 'iA Writer Quattro S', sans-serif;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  color: #F2F4F6;
+  font-family: 'iA Writer Quattro S', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.reveal a {
+  color: #F2F4F6;
+  text-decoration: underline;
+  text-decoration-color: rgba(33, 38, 247, 0.9);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.reveal a:hover {
+  text-decoration-color: #FFD626;
+}
+
+.reveal .progress {
+  height: 4px;
+  color: #418BD9; /* sky blue: Bonus Blue #2126F7 is too dark on #1D232B, and its tints turn lavender */
+  background-color: rgba(65, 139, 217, 0.25);
+}
+
+.reveal .controls {
+  color: #418BD9;
+}
+
+.reveal .slide-number {
+  color: #F2F4F6;
+  background-color: transparent;
+  font-family: 'Berkeley Mono', ui-monospace, monospace;
+}
+
+.reveal .footer {
+  color: rgba(242, 244, 246, 0.4);
+  font-size: 0.5em;
+}
+
+.slide-logo {
+  max-height: 40px !important;
+  opacity: 0.8;
+}
+
+/* Lift the logo and menu button clear of the progress bar. The extra
+   .reveal-viewport outranks Quarto's plugin CSS, which loads after this theme. */
+.reveal-viewport .reveal .slide-logo,
+.reveal-viewport .reveal .slide-menu-button {
+  bottom: 12px;
+}
+
+.big-number {
+  font-size: 7rem;
+  color: #FFD626;
+  font-weight: 700;
+  line-height: 1;
+  display: block;
+  text-align: center;
+}
+
+.center-v {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+/* Hide the empty h2 that Quarto generates for title-less slides */
+.reveal .slides section > h2:empty {
+  display: none;
+}
+
+.reveal .muted {
+  color: rgba(242, 244, 246, 0.5) !important;
+  font-size: 0.85em;
+}
+
+.yellow {
+  color: #FFD626;
+}
+
+/* eyebrow: Berkeley Mono label above headings */
+.reveal .eyebrow {
+  font-family: 'Berkeley Mono', ui-monospace, monospace;
+  font-size: 0.62em;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FFD626;
+}
+
+/* inline highlight: Sunshine Yellow */
+.reveal .hl {
+  color: #FFD626;
+}
+
+.formula {
+  font-size: 3.5rem;
+  color: #F2F4F6;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.formula .highlight {
+  color: #FFD626;
+  font-weight: 700;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* code / mono */
+.reveal code,
+.reveal pre,
+.reveal .mono {
+  font-family: 'Berkeley Mono', ui-monospace, monospace;
+}
+
+.reveal :not(pre) > code {
+  background: rgba(242, 244, 246, 0.1);
+  color: inherit;
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Timed reveals: set the delay per element with style="--d:1s".
+   Scoped to section.present so they replay on every visit. */
+.reveal .slides section :is(.a-fade, .a-rise) {
+  opacity: 0;
+}
+
+.reveal .slides section.present .a-fade {
+  animation: fade-in 0.8s ease-out var(--d, 0s) both;
+}
+
+.reveal .slides section.present .a-rise {
+  animation: rise-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0s) both;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Headline pinned to the top of a slide */
+.reveal .headline {
+  display: block;
+  margin: 0;
+  color: #F2F4F6;
+  font-size: 1.15em;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.reveal .slide-top {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+/* Large statement text; add .hl for the yellow highlight */
+.reveal .statement {
+  display: block;
+  margin: 0;
+  color: #F2F4F6;
+  font-size: 1.9em;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.reveal .statement.hl {
+  color: #FFD626;
+}
+
+.reveal .statement-sub {
+  display: block;
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Slow zoom on hero photo backgrounds (matched by filename) */
+.reveal .backgrounds .slide-background.present[data-background-hash*="hero_forest"] .slide-background-content {
+  animation: kenburns 20s ease-out both;
+}
+
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.12); }
+}
+
+/* Strokes with pathLength="1" draw themselves; --d sets the delay.
+   Inside a fragment they draw when the fragment appears. */
+.reveal .draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.reveal .slides section.present .draw:not(.fragment .draw),
+.reveal .slides section.present .fragment.visible .draw {
+  animation: draw-1 0.7s ease-out var(--d, 0s) both;
+}
+
+@keyframes draw-1 {
+  from { stroke-dashoffset: 1; opacity: 0; }
+  1%   { opacity: 1; }
+  to   { stroke-dashoffset: 0; opacity: 1; }
+}
+
+/* Full-slide SVG canvas */
+.reveal svg.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.reveal svg.canvas text {
+  fill: #F2F4F6;
+  font-family: 'iA Writer Quattro S', sans-serif;
+}
+
+.reveal svg.canvas .label {
+  fill: rgba(242, 244, 246, 0.55);
+  font-family: 'Berkeley Mono', ui-monospace, monospace;
+  font-size: 22px;
+  letter-spacing: 0.12em;
+}
+
+.reveal svg.canvas .node {
+  fill: rgba(65, 139, 217, 0.12);
+  stroke: #418BD9;
+  stroke-width: 3;
+}
+
+.reveal svg.canvas .node.key {
+  fill: rgba(255, 214, 38, 0.1);
+  stroke: #FFD626;
+}
+
+.reveal svg.canvas .edge {
+  fill: none;
+  stroke: #FFD626;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+/* Screenshot in a browser-window frame */
+.reveal .frame {
+  display: inline-block;
+  padding-top: 28px;
+  border-radius: 10px;
+  background: #3a424d radial-gradient(circle at 18px 14px, #e0595a 5px, transparent 6px),
+              radial-gradient(circle at 38px 14px, #e3a83a 5px, transparent 6px),
+              radial-gradient(circle at 58px 14px, #5bb58a 5px, transparent 6px);
+  background-color: #3a424d;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  line-height: 0;
+}
+
+.reveal .frame img {
+  margin: 0;
+  max-height: 100%;
+}
+
+/* White card for diagrams with light backgrounds */
+.reveal .light-card {
+  display: inline-block;
+  padding: 18px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  line-height: 0;
+}
+
+.reveal .light-card img {
+  margin: 0;
+}
+
+/* Report covers fanned out like books on a table */
+.reveal .covers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+}
+
+.reveal .covers img {
+  height: 620px;
+  margin: 0;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.reveal .covers .tilt-l img { transform: rotate(-4deg); }
+.reveal .covers .tilt-r img { transform: rotate(3deg); }
+
+/* Big numbers stacked beside a map */
+.reveal .stats {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  text-align: left;
+}
+
+.reveal .stats .num {
+  display: block;
+  color: #FFD626;
+  font-size: 2.4em;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.reveal .stats .unit {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.8em;
+  color: rgba(242, 244, 246, 0.75);
+}
+
+/* Setup friction: chips drop into a pile, one after another (--d, --r set inline) */
+.reveal .pile {
+  position: absolute;
+  inset: 170px 60px 60px;
+}
+
+.reveal .pile .chip {
+  position: absolute;
+  padding: 0.35em 0.8em;
+  border: 3px solid #418BD9;
+  border-radius: 999px;
+  background: #1D232B;
+  font-family: 'Berkeley Mono', ui-monospace, monospace;
+  font-size: 0.72em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: rotate(var(--r, 0deg));
+}
+
+.reveal .pile .chip.warn {
+  border-color: #e0595a;
+}
+
+.reveal .slides section.present .pile .chip {
+  animation: chip-drop 0.6s cubic-bezier(0.3, 1.4, 0.5, 1) var(--d, 0s) both;
+}
+
+@keyframes chip-drop {
+  from { opacity: 0; transform: translateY(-260px) rotate(0deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(var(--r, 0deg)); }
+}
+
+/* Three cards in a row */
+.reveal .cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  margin-top: 1.5rem;
+}
+
+.reveal .cards .card {
+  padding: 1.1em 1em;
+  border-radius: 12px;
+  background: rgba(65, 139, 217, 0.1);
+  border-top: 6px solid #FFD626;
+  text-align: left;
+}
+
+.reveal .cards .card h3 {
+  margin: 0 0 0.6em;
+  font-size: 1.05em;
+}
+
+.reveal .cards .card pre {
+  margin: 0;
+  width: 100%;
+  box-shadow: none;
+  font-size: 0.5em;
+}
+
+.reveal .cards .card pre code {
+  max-height: none;
+  background: rgba(0, 0, 0, 0.35);
+  color: #F2F4F6;
+  padding: 0.8em;
+  border-radius: 6px;
+}
+
+.reveal .cards .card .big-icon {
+  display: block;
+  margin: 0.2em auto 0;
+  height: 150px;
+}
+
+/* Short lesson lines that build one at a time */
+.reveal .lessons ul {
+  display: block;
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.reveal .lessons li {
+  margin: 0.6em 0;
+  padding-left: 1.4em;
+  position: relative;
+  font-size: 1.1em;
+}
+
+.reveal .lessons li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 3px;
+  background: #e0595a;
+}
+
+/* Small layout helpers for .absolute wrappers (Quarto owns their inline style) */
+.reveal .faint { opacity: 0.35; }
+.reveal .centered { text-align: center; }
+.reveal .shadow img { box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6); }
+
+.reveal .left-v {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.reveal .left-v p { margin: 0.1em 0; }
+
+/* "Ecosystems" slide: a front-on scene (markup generated into index.qmd by
+   scripts/gen_ecosystem_scene.py).
+   Inline variables: --d delay, --p peek cycle, --dx/--dy hiding offset,
+   --t crossing time, --y flight height, --sx/--sy skunk walk vector. */
+.reveal svg.eco :is(.grow, .flap, .fish, .splash, .ripple, .drink-ripple, .leg) {
+  transform-box: fill-box;
+}
+
+.reveal svg.eco .grow { transform-origin: 50% 100%; }
+.reveal svg.eco :is(.flap, .fish, .splash, .ripple, .drink-ripple) { transform-origin: 50% 50%; }
+.reveal svg.eco .leg { transform-origin: 50% 0; }
+
+/* The sun arcs over the scene on a pivot far below it, rising and setting behind the mountains */
+.reveal svg.eco .sun {
+  transform-box: view-box;
+  transform-origin: 800px 1150px;
+}
+
+/* The land runs past the slide edges to fill letterboxed screens */
+.reveal svg.eco.side {
+  overflow: visible;
+}
+
+/* ---- Night, dawn, day, dusk: one 60s cycle, starting in the dark ----------
+   0-5s night (only glowing eyes); then the land lightens and the sun rises from
+   behind the left mountains (~8s); full day ~18-42s; sunset ~48s; night again ~58s. */
+.reveal .slides section.present svg.eco :is(.sun, .daysky, .glow, .night, .eyes, .night-pose) {
+  animation-duration: 60s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.reveal .slides section.present svg.eco .sun { animation-name: sun-arc; }
+
+@keyframes sun-arc {
+  0%, 8%    { transform: rotate(-58deg); opacity: 0; }
+  8.5%      { opacity: 1; }
+  86%       { transform: rotate(58deg); opacity: 1; }
+  87%, 100% { transform: rotate(58deg); opacity: 0; }
+}
+
+.reveal svg.eco .daysky { fill: #0b0e14; }
+.reveal .slides section.present svg.eco .daysky { animation-name: day-sky; }
+
+@keyframes day-sky {
+  0%, 8%    { fill: #0b0e14; }
+  14%       { fill: #2a2a45; }
+  20%       { fill: #3f4862; }
+  30%, 70%  { fill: #36597d; }
+  80%       { fill: #4a3a55; }
+  90%       { fill: #24233a; }
+  96%, 100% { fill: #0b0e14; }
+}
+
+.reveal svg.eco .glow { opacity: 0; }
+.reveal .slides section.present svg.eco .glow.dawn { animation-name: glow-dawn; }
+.reveal .slides section.present svg.eco .glow.dusk { animation-name: glow-dusk; }
+
+@keyframes glow-dawn {
+  0%, 8%    { opacity: 0; }
+  16%       { opacity: 1; }
+  25%       { opacity: 0.5; }
+  33%, 100% { opacity: 0; }
+}
+
+@keyframes glow-dusk {
+  0%, 68%   { opacity: 0; }
+  78%       { opacity: 0.6; }
+  85%       { opacity: 1; }
+  94%, 100% { opacity: 0; }
+}
+
+/* A veil darkens the whole scene at night (the title and glowing eyes sit above it) */
+.reveal svg.eco .night { opacity: 0.88; }
+.reveal .slides section.present svg.eco .night { animation-name: night-veil; }
+
+@keyframes night-veil {
+  0%, 8%    { opacity: 0.88; }
+  14%       { opacity: 0.55; }
+  21%       { opacity: 0.18; }
+  30%, 70%  { opacity: 0; }
+  80%       { opacity: 0.2; }
+  90%       { opacity: 0.55; }
+  96%, 100% { opacity: 0.88; }
+}
+
+/* At night the fox, rabbit and owl sit out in the open (dimmed by the veil) and their
+   eyes glow and blink; both fade at dawn. `.late` ones (the owl, whose tree is still
+   growing at the start) only appear in the evening. */
+.reveal svg.eco :is(.eyes, .night-pose).late { opacity: 0; }
+.reveal .slides section.present svg.eco :is(.eyes, .night-pose) { animation-name: eyes-at-night; }
+.reveal .slides section.present svg.eco :is(.eyes, .night-pose).late { animation-name: eyes-in-evening; }
+
+@keyframes eyes-at-night {
+  0%, 7%    { opacity: 1; }
+  12%, 90%  { opacity: 0; }
+  96%, 100% { opacity: 1; }
+}
+
+@keyframes eyes-in-evening {
+  0%, 90%   { opacity: 0; }
+  96%, 100% { opacity: 1; }
+}
+
+.reveal svg.eco .blink {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+}
+
+.reveal .slides section.present svg.eco .blink {
+  animation-name: blink;  /* duration and delay vary per pair (inline) */
+  animation-iteration-count: infinite;
+}
+
+@keyframes blink {
+  0%, 90%   { transform: scaleY(1); }
+  94%       { transform: scaleY(0.1); }
+  98%, 100% { transform: scaleY(1); }
+}
+
+/* Trees start at random times and grow slowly, slowing further as they reach full height */
+.reveal .slides section.present svg.eco.side .grow {
+  animation-duration: 55s;
+  animation-timing-function: cubic-bezier(0.05, 0.75, 0.1, 1);
+}
+
+/* Lightning (45s cycle, first strike ~26s in): a storm drifts over, a bolt hits a
+   tree, it falls, lies there a while, then a sapling regrows in its place */
+.reveal .slides section.present svg.eco.side :is(.storm, .bolt, .flash, .struck) {
+  animation-duration: 45s;
+  animation-delay: 14s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.reveal svg.eco.side :is(.storm, .bolt, .flash) { opacity: 0; }
+.reveal .slides section.present svg.eco.side .storm { animation-name: storm; }
+.reveal .slides section.present svg.eco.side .bolt { animation-name: bolt; }
+.reveal .slides section.present svg.eco.side .flash { animation-name: flash; }
+
+@keyframes storm {
+  0%        { opacity: 0; transform: translateX(-80px); }
+  12%       { opacity: 0.95; }
+  40%       { opacity: 0.95; transform: translateX(20px); }
+  50%, 100% { opacity: 0; transform: translateX(40px); }
+}
+
+@keyframes bolt {
+  0%, 26.4%   { opacity: 0; }
+  26.5%, 27%  { opacity: 1; }
+  27.1%, 27.4% { opacity: 0; }
+  27.5%, 28%  { opacity: 1; }
+  28.1%, 100% { opacity: 0; }
+}
+
+@keyframes flash {
+  0%, 26.4%   { opacity: 0; }
+  26.5%       { opacity: 0.35; }
+  27.2%       { opacity: 0; }
+  27.5%       { opacity: 0.25; }
+  28.5%, 100% { opacity: 0; }
+}
+
+.reveal svg.eco.side .struck {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.reveal .slides section.present svg.eco.side .struck { animation-name: struck; }
+
+@keyframes struck {
+  0%, 27%   { opacity: 1; transform: rotate(0deg) scale(1); animation-timing-function: ease-in; }
+  31%       { opacity: 1; transform: rotate(86deg) scale(1); }
+  70%       { opacity: 1; transform: rotate(86deg) scale(1); }
+  76%       { opacity: 0; transform: rotate(86deg) scale(1); }
+  77%       { opacity: 0; transform: rotate(0deg) scale(0.02); }
+  79%       { opacity: 1; transform: rotate(0deg) scale(0.05); animation-timing-function: cubic-bezier(0.05, 0.75, 0.1, 1); }
+  100%      { opacity: 1; transform: rotate(0deg) scale(1); }
+}
+
+.reveal .slides section.present svg.eco.side .rain {
+  animation: rain 0.9s linear infinite;
+}
+
+@keyframes rain {
+  from { transform: translateY(0); opacity: 0.9; }
+  to   { transform: translateY(240px); opacity: 0; }
+}
+
+/* Beaver (one 30s story, from 9s): surfaces, chews the sapling down, drags it onto
+   the stream (by --mx/--my, set inline by the generator), the dam and its pool appear, it swims off */
+.reveal .slides section.present svg.eco.side :is(.beaver, .log-fall, .log-move, .chips, .dam, .dam-pool) {
+  animation-duration: 30s;
+  animation-delay: 9s;
+  animation-fill-mode: both;
+}
+
+.reveal svg.eco.side :is(.log-fall, .dam-pool, .chip) {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.reveal svg.eco.side :is(.beaver, .chips, .dam) { opacity: 0; }
+.reveal .slides section.present svg.eco.side .beaver { animation-name: beaver; }
+.reveal .slides section.present svg.eco.side .log-fall { animation-name: log-fall; }
+.reveal .slides section.present svg.eco.side .log-move { animation-name: log-move; }
+.reveal .slides section.present svg.eco.side .chips { animation-name: chips; }
+.reveal .slides section.present svg.eco.side .dam { animation-name: dam; }
+.reveal .slides section.present svg.eco.side .dam-pool { animation-name: dam-pool; }
+
+@keyframes beaver {
+  0%        { opacity: 0; transform: translate(-10px, -12px); }
+  5%        { opacity: 1; transform: translate(-10px, -17px); }
+  12%, 48%  { opacity: 1; transform: translate(0, 0); }
+  80%, 86%  { opacity: 1; transform: translate(var(--mx), var(--my)); }
+  96%       { opacity: 1; transform: translate(-10px, -17px); }
+  100%      { opacity: 0; transform: translate(-10px, -12px); }
+}
+
+@keyframes log-fall {
+  0%, 30%   { transform: rotate(0deg); }
+  32%       { transform: rotate(-3deg); }
+  34%       { transform: rotate(3deg); }
+  36%       { transform: rotate(-4deg); }
+  38%       { transform: rotate(2deg); }
+  40%       { transform: rotate(0deg); animation-timing-function: ease-in; }
+  46%, 100% { transform: rotate(-86deg); }
+}
+
+@keyframes log-move {
+  0%, 50%   { transform: translate(0, 0); }
+  80%, 100% { transform: translate(var(--mx), var(--my)); }
+}
+
+@keyframes chips {
+  0%, 14%   { opacity: 0; }
+  15%, 38%  { opacity: 1; }
+  40%, 100% { opacity: 0; }
+}
+
+@keyframes dam {
+  0%, 80%   { opacity: 0; }
+  86%, 100% { opacity: 1; }
+}
+
+@keyframes dam-pool {
+  0%, 82%   { transform: scale(0); }
+  100%      { transform: scale(1); }
+}
+
+.reveal svg.eco.side .beaver-head {
+  transform-box: fill-box;
+  transform-origin: 80% 80%;
+}
+
+.reveal .slides section.present svg.eco.side .beaver-head {
+  animation: chew 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes chew {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-8deg); }
+}
+
+.reveal .slides section.present svg.eco.side .chip {
+  animation: chip-hop 0.65s ease-out infinite;
+}
+
+@keyframes chip-hop {
+  from { transform: translate(0, 0); opacity: 1; }
+  to   { transform: translate(-12px, -18px); opacity: 0; }
+}
+
+.reveal .slides section.present svg.eco .cloud {
+  animation: cloud-drift var(--t, 120s) linear var(--d, 0s) infinite both;
+}
+
+@keyframes cloud-drift {
+  from { transform: translateX(-250px); }
+  to   { transform: translateX(1850px); }
+}
+
+/* Trees grow slowly, back to front */
+.reveal .slides section.present svg.eco .grow {
+  animation: tree-grow 3s cubic-bezier(0.2, 0.7, 0.3, 1) var(--d, 0s) both;
+}
+
+@keyframes tree-grow {
+  from { transform: scale(0.4, 0); }
+  to   { transform: scale(1, 1); }
+}
+
+/* Animals peek out, look around, and hide again */
+.reveal .slides section.present svg.eco .peek {
+  animation: peek-hide var(--p, 16s) ease-in-out var(--d, 10s) infinite both;
+}
+
+@keyframes peek-hide {
+  0%       { opacity: 0; transform: translate(var(--dx), var(--dy)); }
+  2%       { opacity: 1; transform: translate(var(--dx), var(--dy)); }
+  8%, 30%  { opacity: 1; transform: translate(0, 0); }
+  37%      { opacity: 1; transform: translate(var(--dx), var(--dy)); }
+  39%, 100% { opacity: 0; transform: translate(var(--dx), var(--dy)); }
+}
+
+/* Deer lowers its head to drink; the neck pivots at the shoulder (local coords) */
+.reveal svg.eco .drink {
+  transform-box: view-box;
+  transform-origin: -14px -40px;
+}
+
+.reveal .slides section.present svg.eco .drink {
+  animation: drink 9s ease-in-out 9s infinite both;
+}
+
+@keyframes drink {
+  0%, 8%    { transform: rotate(0deg); }
+  20%       { transform: rotate(-62deg); }
+  26%       { transform: rotate(-56deg); }
+  32%       { transform: rotate(-62deg); }
+  38%       { transform: rotate(-56deg); }
+  44%       { transform: rotate(-62deg); }
+  58%, 100% { transform: rotate(0deg); }
+}
+
+.reveal svg.eco .drink-ripple { opacity: 0; }
+
+.reveal .slides section.present svg.eco .drink-ripple {
+  animation: drink-ripple 9s ease-out 9s infinite both;
+}
+
+@keyframes drink-ripple {
+  0%, 20%  { opacity: 0; transform: scale(0.4); }
+  22%      { opacity: 1; }
+  48%      { opacity: 0; transform: scale(2.4); }
+  100%     { opacity: 0; transform: scale(2.4); }
+}
+
+/* Gentle pond ripples and flowing water */
+.reveal .slides section.present svg.eco .ripple {
+  animation: ripple 5s ease-out infinite both;
+}
+
+@keyframes ripple {
+  from { opacity: 0.8; transform: scale(0.3); }
+  to   { opacity: 0; transform: scale(2); }
+}
+
+.reveal svg.eco .flow {
+  stroke-dasharray: 6 14;
+}
+
+.reveal .slides section.present svg.eco .flow {
+  animation: flow 1.6s linear infinite;
+}
+
+@keyframes flow {
+  to { stroke-dashoffset: -20; }
+}
+
+/* A fish jumps, rarely */
+.reveal svg.eco :is(.fish, .splash) { opacity: 0; }
+
+.reveal .slides section.present svg.eco .fish {
+  animation: fish-jump 23s ease-in-out 12s infinite both;
+}
+
+.reveal .slides section.present svg.eco .splash.s1 {
+  animation: splash 23s ease-out 12s infinite both;
+}
+
+.reveal .slides section.present svg.eco .splash.s2 {
+  animation: splash 23s ease-out 12.9s infinite both;
+}
+
+@keyframes fish-jump {
+  0%       { opacity: 0; transform: translate(0, 0) rotate(-55deg); }
+  0.5%     { opacity: 1; }
+  2%       { transform: translate(28px, -62px) rotate(0deg); }
+  4%       { opacity: 1; transform: translate(56px, 0) rotate(55deg); }
+  4.5%, 100% { opacity: 0; transform: translate(56px, 0) rotate(55deg); }
+}
+
+@keyframes splash {
+  0%       { opacity: 0.9; transform: scale(0.4); }
+  6%       { opacity: 0; transform: scale(2.2); }
+  100%     { opacity: 0; transform: scale(2.2); }
+}
+
+/* Skunk ambles across the front, then is gone for a while */
+.reveal svg.eco .skunk { opacity: 0; }
+
+.reveal .slides section.present svg.eco .skunk {
+  animation: skunk-walk 75s linear 8s infinite both;
+}
+
+@keyframes skunk-walk {
+  0%        { opacity: 0; transform: translate(0, 0); }
+  1%        { opacity: 1; }
+  79%       { opacity: 1; transform: translate(var(--sx), var(--sy)); }
+  80%, 100% { opacity: 0; transform: translate(var(--sx), var(--sy)); }
+}
+
+.reveal .slides section.present svg.eco .leg-a {
+  animation: leg 0.6s ease-in-out infinite alternate;
+}
+
+.reveal .slides section.present svg.eco .leg-b {
+  animation: leg 0.6s ease-in-out -0.6s infinite alternate;
+}
+
+@keyframes leg {
+  from { transform: rotate(-18deg); }
+  to   { transform: rotate(18deg); }
+}
+
+/* Birds */
+.reveal svg.eco .bird {
+  fill: none;
+  stroke: #F2F4F6;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.reveal svg.eco .bird-fly { opacity: 0; }
+
+.reveal .slides section.present svg.eco .bird-fly {
+  animation: bird-fly var(--t, 10s) linear var(--d, 0s) infinite both;
+}
+
+.reveal .slides section.present svg.eco .bird-fly.rtl {
+  animation-name: bird-fly-rtl;
+}
+
+.reveal .slides section.present svg.eco .flap {
+  animation: flap 0.35s ease-in-out infinite alternate;
+}
+
+/* Each crossing takes ~60% of the cycle (--t, slow and varied per group); the rest is empty sky */
+@keyframes bird-fly {
+  0%          { opacity: 1; transform: translate(-400px, var(--y)); }
+  60%         { opacity: 1; transform: translate(2000px, calc(var(--y) - 60px)); }
+  60.1%, 100% { opacity: 0; transform: translate(2000px, calc(var(--y) - 60px)); }
+}
+
+@keyframes bird-fly-rtl {
+  0%          { opacity: 1; transform: translate(2000px, var(--y)); }
+  60%         { opacity: 1; transform: translate(-400px, calc(var(--y) - 40px)); }
+  60.1%, 100% { opacity: 0; transform: translate(-400px, calc(var(--y) - 40px)); }
+}
+
+/* Each group rises and dips a little as it flies (--b period, --bob height) */
+.reveal .slides section.present svg.eco .bob {
+  animation: bob var(--b, 3s) ease-in-out infinite alternate;
+}
+
+@keyframes bob {
+  from { transform: translateY(0); }
+  to   { transform: translateY(var(--bob, 10px)); }
+}
+
+@keyframes flap {
+  from { transform: scaleY(1); }
+  to   { transform: scaleY(-0.5); }
+}
+
+/* Speaker slide */
+.reveal .avatar img {
+  margin: 0;
+  border-radius: 50%;
+  border: 6px solid #FFD626;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Dark vignette behind text laid over a background photo */
+.reveal .deep-shade {
+  position: absolute;
+  inset: -600px -1200px;
+  background: radial-gradient(ellipse 900px 520px at center, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  pointer-events: none;
+}
+
+.reveal .deep-copy {
+  gap: 0.2rem;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.9);
+}
+
+.reveal .deep-copy p {
+  margin: 0;
+}
