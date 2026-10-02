@@ -59,10 +59,9 @@ layout: full-bleed
 
 ---
 id: slide-wildlife-insights
-layout: full-bleed
+layout: iframe
+url: https://www.wildlifeinsights.org/
 ---
-
-<iframe src="https://www.wildlifeinsights.org/" style="position:absolute; inset:0; width:100%; height:100%; border:none" />
 
 ---
 id: slide-question
@@ -213,10 +212,9 @@ layout: full-bleed
 
 ---
 id: slide-demo
-layout: full-bleed
+layout: iframe
+url: https://tylere.github.io/rle-tyler-colombia/
 ---
-
-<iframe src="https://tylere.github.io/rle-tyler-colombia/" style="position:absolute; inset:0; width:100%; height:100%; border:none" />
 
 ---
 id: slide-backup-home
