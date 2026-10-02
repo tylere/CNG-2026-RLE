@@ -373,6 +373,39 @@ svg.canvas .edge {
   height: 150px;
 }
 
+/* Lesson list with red-square bullets */
+.lessons ul {
+  display: block;
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.lessons li {
+  margin: 0.6em 0;
+  padding-left: 1.4em;
+  position: relative;
+  font-size: 1.1em;
+}
+
+.lessons li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 3px;
+  background: #e0595a;
+}
+
+/* Book covers */
+.covers img {
+  height: 620px;
+  margin: 0;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
 /* Light card variant for setup/info slides */
 .light-card {
   background: rgba(242, 244, 246, 0.06);
