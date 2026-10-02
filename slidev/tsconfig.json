@@ -10,9 +10,14 @@
     "isolatedModules": true,
     "noEmit": true,
     "lib": ["ESNext", "DOM"],
-    "baseUrl": "."
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "paths": {
+      "@slidev/client": ["./env.d.ts"]
+    }
   },
   "include": [
+    "env.d.ts",
     "slides.md",
     "components/**/*.ts",
     "components/**/*.vue",
