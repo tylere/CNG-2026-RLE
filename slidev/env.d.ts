@@ -22,4 +22,7 @@ declare module '@slidev/client' {
     $renderContext: Ref<string>
     $frontmatter: Record<string, unknown>
   }
+
+  export function onSlideLeave(callback: () => void): void
+  export function onSlideEnter(callback: () => void): void
 }

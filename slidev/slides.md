@@ -15,3 +15,24 @@ class: title-slide
 CNG Forum 2026 · Cloud-Native Geo in Practice
 
 Tyler Erickson
+
+---
+id: slide-ecosystems
+layout: full-bleed
+---
+
+<EcosystemScene />
+
+---
+id: slide-measure-ecosystems
+layout: full-bleed
+---
+
+<MeasureEcosystemsSlide />
+
+---
+id: slide-camera-trap
+layout: full-bleed
+---
+
+<CameraTrapSlide />
