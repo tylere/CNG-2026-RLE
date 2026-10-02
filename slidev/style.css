@@ -259,14 +259,118 @@ code, pre, .mono {
   to   { opacity: 1; transform: none; }
 }
 
-/* SVG draw-on: element needs pathLength="1", stroke-dasharray="1", stroke-dashoffset="1" */
+/* SVG draw-on: element needs pathLength="1" */
 .draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
   animation: draw-on 0.7s ease-out var(--d, 0s) both;
 }
 
 @keyframes draw-on {
-  from { stroke-dashoffset: 1; }
-  to   { stroke-dashoffset: 0; }
+  from { stroke-dashoffset: 1; opacity: 0; }
+  1%   { opacity: 1; }
+  to   { stroke-dashoffset: 0; opacity: 1; }
+}
+
+/* SVG canvas diagrams */
+svg.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+svg.canvas text {
+  fill: #F2F4F6;
+  font-family: 'iA Writer Quattro S', sans-serif;
+}
+
+svg.canvas .label {
+  fill: rgba(242, 244, 246, 0.55);
+  font-family: 'Berkeley Mono', monospace;
+  font-size: 22px;
+  letter-spacing: 0.12em;
+}
+
+svg.canvas .node {
+  fill: rgba(65, 139, 217, 0.12);
+  stroke: #418BD9;
+  stroke-width: 3;
+}
+
+svg.canvas .node.key {
+  fill: rgba(255, 214, 38, 0.1);
+  stroke: #FFD626;
+}
+
+svg.canvas .edge {
+  fill: none;
+  stroke: #FFD626;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+/* Friction pile: chips drop in on slide enter */
+.pile {
+  position: absolute;
+  inset: 170px 60px 60px;
+}
+
+.pile .chip {
+  position: absolute;
+  padding: 0.35em 0.8em;
+  border: 3px solid #418BD9;
+  border-radius: 999px;
+  background: #1D232B;
+  font-family: 'Berkeley Mono', monospace;
+  font-size: 0.72em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: rotate(var(--r, 0deg));
+}
+
+.pile .chip.warn { border-color: #e0595a; }
+
+.pile.active .chip {
+  animation: chip-drop 0.6s cubic-bezier(0.3, 1.4, 0.5, 1) var(--d, 0s) both;
+}
+
+@keyframes chip-drop {
+  from { opacity: 0; transform: translateY(-260px) rotate(0deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(var(--r, 0deg)); }
+}
+
+/* Three-card grid */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  margin-top: 1.5rem;
+}
+
+.cards .card {
+  padding: 1.1em 1em;
+  border-radius: 12px;
+  background: rgba(65, 139, 217, 0.1);
+  border-top: 6px solid #FFD626;
+}
+
+.cards .card h3 {
+  margin: 0 0 0.6em;
+  font-size: 1.05em;
+}
+
+.cards .card pre {
+  margin: 0;
+  width: 100%;
+  box-shadow: none;
+  font-size: 0.5em;
+}
+
+.cards .card .big-icon {
+  display: block;
+  margin: 0.2em auto 0;
+  height: 150px;
 }
 
 /* Light card variant for setup/info slides */
