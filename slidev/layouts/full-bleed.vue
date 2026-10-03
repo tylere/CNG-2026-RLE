@@ -14,7 +14,9 @@
 }
 
 .full-bleed-layout > :deep(*) {
-  width: 100%;
-  height: 100%;
+  /* In-flow flex items grow to fill the canvas. Absolutely positioned
+     children are out of flex flow so this rule does not affect them,
+     letting them size from their explicit positioning constraints. */
+  flex: 1 1 auto;
 }
 </style>

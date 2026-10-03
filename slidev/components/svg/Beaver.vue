@@ -18,8 +18,8 @@
       <ellipse class="splash s1" cx="0" cy="0" rx="14" ry="5" fill="none" stroke="#bfe0f5" stroke-width="2"/>
       <ellipse class="splash s2" cx="56" cy="0" rx="14" ry="5" fill="none" stroke="#bfe0f5" stroke-width="2"/>
       <g class="fish">
-        <path d="M-14 0 Q-4 -9 10 -2 L18 -8 L16 0 L18 8 L10 2 Q-4 9 -14 0 Z" fill="#f08a3c"/>
-        <circle cx="-8" cy="-1" r="1.6" fill="#1a1a1a"/>
+        <path d="M14 0 Q4 -9 -10 -2 L-18 -8 L-16 0 L-18 8 L-10 2 Q4 9 14 0 Z" fill="#f08a3c"/>
+        <circle cx="8" cy="-1" r="1.6" fill="#1a1a1a"/>
       </g>
     </g>
     <!-- Sapling being felled (log-move wraps log-fall) -->

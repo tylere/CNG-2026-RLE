@@ -5,6 +5,7 @@ const props = defineProps<{
   side: 'left' | 'right'
   mode: 'wander' | 'camera-trap'
   initialX?: number
+  immediate?: boolean
 }>()
 
 // In wander mode: use original SVG positions. In camera-trap: use initialX from position bridge.
@@ -19,11 +20,10 @@ defineExpose({ el: groupRef })
 
 <template>
   <!-- Left ecologist: clipboard and pencil -->
+  <g v-if="side === 'left'" :transform="`translate(${startX} 870)`">
   <g
-    v-if="side === 'left'"
     ref="groupRef"
-    :transform="`translate(${startX} 870)`"
-    :class="['ecologist', 'eco-l', mode === 'camera-trap' ? 'eco-l-ct' : '']"
+    :class="['ecologist', 'eco-l', mode === 'camera-trap' ? 'eco-l-ct' : '', props.immediate ? 'immediate' : '']"
   >
     <ellipse cx="4" cy="-1" rx="24" ry="7" fill="rgba(0,0,0,0.32)"/>
     <rect class="leg leg-b" x="-14" y="-58" width="11" height="58" rx="4" fill="#4a5a6e"/>
@@ -51,13 +51,13 @@ defineExpose({ el: groupRef })
     <rect x="18" y="-78" width="14" height="16" rx="3" fill="#8b7a3a" opacity="0.9"/>
     <line x1="18" y1="-78" x2="18" y2="-94" stroke="#8b7a3a" stroke-width="3"/>
   </g>
+  </g>
 
   <!-- Right ecologist: camera; note the scale(-1 1) flip is on the outer wrapper -->
+  <g v-if="side === 'right'" :transform="`translate(${startX} 868) scale(-1 1)`">
   <g
-    v-if="side === 'right'"
     ref="groupRef"
-    :transform="`translate(${startX} 868) scale(-1 1)`"
-    :class="['ecologist', 'eco-r', mode === 'camera-trap' ? 'eco-r-ct' : '']"
+    :class="['ecologist', 'eco-r', mode === 'camera-trap' ? 'eco-r-ct' : '', props.immediate ? 'immediate' : '']"
   >
     <ellipse cx="4" cy="-1" rx="24" ry="7" fill="rgba(0,0,0,0.32)"/>
     <rect class="leg leg-b" x="-14" y="-58" width="11" height="58" rx="4" fill="#5c4a3a"/>
@@ -84,6 +84,7 @@ defineExpose({ el: groupRef })
     <path d="M-18,-149 Q-28,-148 -26,-144 Q-16,-146 -18,-149 Z" fill="#2a4a9a"/>
     <path d="M-28,-120 Q0,-108 26,-120" stroke="#6a5a40" stroke-width="3" fill="none"/>
   </g>
+  </g>
 </template>
 
 <style scoped>
@@ -97,6 +98,13 @@ defineExpose({ el: groupRef })
 .ecologist.eco-r {
   animation: eco-r-wander 120s linear 4.5s both;
   animation-play-state: var(--play-state, paused);
+}
+
+/* immediate: skip the walk-in, start already visible at position 0 */
+.ecologist.eco-l.immediate,
+.ecologist.eco-r.immediate {
+  animation-delay: -10s;
+  animation-fill-mode: none;
 }
 
 .ecologist.eco-l-ct {

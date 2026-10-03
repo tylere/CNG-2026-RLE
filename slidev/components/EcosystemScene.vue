@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useNav, useSlideContext } from '@slidev/client'
 import DayNightCycle from './svg/DayNightCycle.vue'
+import DayNightOverlay from './svg/DayNightOverlay.vue'
 import Clouds from './svg/Clouds.vue'
 import Mountains from './svg/Mountains.vue'
 import Forest from './svg/Forest.vue'
@@ -16,6 +17,10 @@ import Beaver from './svg/Beaver.vue'
 import Skunk from './svg/Skunk.vue'
 import Porcupine from './svg/Porcupine.vue'
 
+const props = defineProps<{
+  treesGrown?: boolean
+}>()
+
 // $page is the static page number of the slide this component lives in (Ref<number>).
 // currentPage updates reactively as the user navigates.
 const { $page } = useSlideContext()
@@ -25,42 +30,42 @@ const isActive = computed(() => currentPage.value === $page.value)
 
 <template>
   <svg
-    viewBox="-320 -260 1920 1160"
+    viewBox="0 0 1600 900"
+    overflow="visible"
     class="ecosystem-scene"
-    :class="{ active: isActive }"
+    :class="{ active: isActive, 'trees-grown': props.treesGrown }"
     aria-label="Animated ecosystem scene"
     style="width:100%;height:100%"
   >
-    <!-- Background layers (bottom to top) -->
-    <Mountains />
+    <!-- Background layers (bottom to top): sky first so mountains/terrain render in front -->
     <DayNightCycle />
+    <Mountains />
     <Clouds />
 
-    <!-- Mid: left beaver pond before trees -->
+    <!-- Water bodies -->
     <Lake />
 
-    <!-- Trees -->
+    <!-- Fauna sorted by ground-contact y (smaller y = further away = renders first/behind).
+         Skunk and Porcupine are foreground walkers so they render after Forest. -->
+    <Owl />        <!-- y≈528 perched on branch, furthest back -->
+    <Deer />       <!-- y≈720 at lake -->
+    <Rabbit />     <!-- y≈750 at burrow (bush built into component) -->
+    <Beaver />     <!-- y≈754 near left pond -->
+    <Fox />        <!-- y≈810 peeking from behind trees -->
+
+    <!-- Trees (y≈800–890); animals above render behind forest, animals below render in front -->
     <Forest />
 
-    <!-- Fauna above trees -->
-    <Deer />
-    <Beaver />
+    <!-- Foreground walkers in front of forest -->
+    <Skunk />      <!-- y≈871 -->
+    <Porcupine />  <!-- y≈873 -->
 
-    <!-- Central pond above trees (z-order: after trees so it overlays correctly) -->
-    <!-- Lake's .central-pond group is already inside Lake.vue; EcosystemScene
-         delegates z-order to component ordering above -->
-
+    <!-- Above-canopy elements -->
     <Birds />
     <WeatherEvent />
 
-    <!-- Peeking animals -->
-    <Fox />
-    <Rabbit />
-    <Owl />
-
-    <!-- Walkers cross the front -->
-    <Skunk />
-    <Porcupine />
+    <!-- Night veil + animal eyes rendered above terrain/forest so they darken the ground correctly -->
+    <DayNightOverlay />
 
     <!-- Slot for slide-specific overlays (ecologist, camera trap, text) -->
     <slot />

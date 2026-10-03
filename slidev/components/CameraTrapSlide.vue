@@ -11,7 +11,7 @@ const ecoLStartX = computed(() => position.value?.x ?? 360)
 </script>
 
 <template>
-  <EcosystemScene>
+  <EcosystemScene trees-grown>
     <Ecologist side="left" mode="camera-trap" :initial-x="ecoLStartX" />
     <Ecologist side="right" mode="camera-trap" />
     <CameraTrap />

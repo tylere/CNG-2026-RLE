@@ -13,17 +13,19 @@
         <circle cx="0" cy="19" r="3" fill="#2a1c14"/>
       </g>
     </g>
-    <!-- Fox visible at night -->
+    <!-- Fox visible at night — shifted to hidden offset so it stays behind the rock -->
     <g transform="translate(1108.0 781.0) scale(1.3)">
-      <g class="night-pose">
-        <polygon points="-24,-28 -12,-8 12,-8 24,-28 22,2 0,22 -22,2" fill="#d9662b"/>
-        <polygon points="-20,-22 -13,-10 -8,-10" fill="#2a1c14"/>
-        <polygon points="20,-22 13,-10 8,-10" fill="#2a1c14"/>
-        <polygon points="-22,2 -8,6 0,22" fill="#f3ece2"/>
-        <polygon points="22,2 8,6 0,22" fill="#f3ece2"/>
-        <circle cx="-8" cy="-2" r="2.6" fill="#2a1c14"/>
-        <circle cx="8" cy="-2" r="2.6" fill="#2a1c14"/>
-        <circle cx="0" cy="19" r="3" fill="#2a1c14"/>
+      <g transform="translate(50, 8)">
+        <g class="night-pose">
+          <polygon points="-24,-28 -12,-8 12,-8 24,-28 22,2 0,22 -22,2" fill="#d9662b"/>
+          <polygon points="-20,-22 -13,-10 -8,-10" fill="#2a1c14"/>
+          <polygon points="20,-22 13,-10 8,-10" fill="#2a1c14"/>
+          <polygon points="-22,2 -8,6 0,22" fill="#f3ece2"/>
+          <polygon points="22,2 8,6 0,22" fill="#f3ece2"/>
+          <circle cx="-8" cy="-2" r="2.6" fill="#2a1c14"/>
+          <circle cx="8" cy="-2" r="2.6" fill="#2a1c14"/>
+          <circle cx="0" cy="19" r="3" fill="#2a1c14"/>
+        </g>
       </g>
     </g>
   </g>
