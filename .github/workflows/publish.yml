@@ -14,21 +14,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: astral-sh/setup-uv@v4
+      - uses: pnpm/action-setup@v4
         with:
-          version: "latest"
+          version: latest
 
-      - name: Install Python dependencies
-        run: uv sync --frozen
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: slidev/pnpm-lock.yaml
 
-      - uses: quarto-dev/quarto-actions/setup@v2
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: slidev
 
-      - name: Render Quarto presentation
-        run: uv run quarto render index.qmd
+      - name: Build Slidev presentation
+        run: pnpm build --base /
+        working-directory: slidev
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          publish_dir: ./slidev/dist
           force_orphan: true
