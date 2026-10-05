@@ -104,6 +104,20 @@ layout: full-bleed
 </div>
 
 ---
+id: slide-iucn
+layout: full-bleed
+---
+
+<div class="center-v" style="height:100%; gap:1.5rem">
+  <span class="eyebrow a-rise">International Union for Conservation of Nature</span>
+  <span class="statement a-rise" style="--d:0.2s; font-size:5em">IUCN</span>
+  <span class="statement-sub a-rise" style="--d:0.4s">Independent · founded <span class="hl">1948</span> · UN General Assembly observer</span>
+  <span v-click class="statement-sub">Drafted the <span class="hl">Convention on Biological Diversity</span></span>
+</div>
+
+<a href="https://iucn.org/about-iucn" style="position:absolute; bottom:52px; right:80px" class="mono muted">iucn.org/about-iucn</a>
+
+---
 id: slide-rle
 layout: full-bleed
 ---
