@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps<{
   side: 'left' | 'right'
@@ -16,6 +16,22 @@ const startX = computed(() =>
 // Expose so the slide can read the mid-animation CSS transform on leave.
 const groupRef = ref<SVGGElement | null>(null)
 defineExpose({ el: groupRef })
+
+const isWalking = ref(false)
+let prevX = 0
+let rafId = 0
+
+function tick() {
+  if (groupRef.value) {
+    const mat = new DOMMatrix(getComputedStyle(groupRef.value).transform)
+    isWalking.value = Math.abs(mat.m41 - prevX) > 0.05
+    prevX = mat.m41
+  }
+  rafId = requestAnimationFrame(tick)
+}
+
+onMounted(() => { rafId = requestAnimationFrame(tick) })
+onUnmounted(() => cancelAnimationFrame(rafId))
 </script>
 
 <template>
@@ -23,7 +39,7 @@ defineExpose({ el: groupRef })
   <g v-if="side === 'left'" :transform="`translate(${startX} 870)`">
   <g
     ref="groupRef"
-    :class="['ecologist', 'eco-l', mode === 'camera-trap' ? 'eco-l-ct' : '', props.immediate ? 'immediate' : '']"
+    :class="['ecologist', 'eco-l', mode === 'camera-trap' ? 'eco-l-ct' : '', props.immediate ? 'immediate' : '', isWalking ? 'walking' : '']"
   >
     <ellipse cx="4" cy="-1" rx="24" ry="7" fill="rgba(0,0,0,0.32)"/>
     <rect class="leg leg-b" x="-14" y="-58" width="11" height="58" rx="4" fill="#4a5a6e"/>
@@ -57,7 +73,7 @@ defineExpose({ el: groupRef })
   <g v-if="side === 'right'" :transform="`translate(${startX} 868) scale(-1 1)`">
   <g
     ref="groupRef"
-    :class="['ecologist', 'eco-r', mode === 'camera-trap' ? 'eco-r-ct' : '', props.immediate ? 'immediate' : '']"
+    :class="['ecologist', 'eco-r', mode === 'camera-trap' ? 'eco-r-ct' : '', props.immediate ? 'immediate' : '', isWalking ? 'walking' : '']"
   >
     <ellipse cx="4" cy="-1" rx="24" ry="7" fill="rgba(0,0,0,0.32)"/>
     <rect class="leg leg-b" x="-14" y="-58" width="11" height="58" rx="4" fill="#5c4a3a"/>
@@ -108,12 +124,12 @@ defineExpose({ el: groupRef })
 }
 
 .ecologist.eco-l-ct {
-  animation: eco-l-ct-sequence 80s linear 0s 1 both;
+  animation: eco-l-ct-sequence 60s linear 0s 1 both;
   animation-play-state: var(--play-state, paused);
 }
 
 .ecologist.eco-r-ct {
-  animation: eco-r-ct-sequence 80s linear 0s 1 both;
+  animation: eco-r-ct-sequence 60s linear 0s 1 both;
   animation-play-state: var(--play-state, paused);
 }
 
@@ -128,18 +144,22 @@ defineExpose({ el: groupRef })
   animation-play-state: var(--play-state, paused);
 }
 
-.leg-a {
+.leg-a, .leg-b {
   transform-box: fill-box;
   transform-origin: 50% 0%;
-  animation: leg 0.6s ease-in-out infinite alternate;
-  animation-play-state: var(--play-state, paused);
+  transition: transform 0.2s ease-out;
 }
 
-.leg-b {
-  transform-box: fill-box;
-  transform-origin: 50% 0%;
+.walking .leg-a {
+  animation: leg 0.6s ease-in-out infinite alternate;
+  animation-play-state: var(--play-state, paused);
+  transition: none;
+}
+
+.walking .leg-b {
   animation: leg 0.6s ease-in-out -0.6s infinite alternate;
   animation-play-state: var(--play-state, paused);
+  transition: none;
 }
 
 @keyframes eco-l-wander {
@@ -182,18 +202,25 @@ defineExpose({ el: groupRef })
 }
 
 @keyframes eco-l-ct-sequence {
-  0%     { opacity: 1; transform: translateX(var(--eco-l-start-tx, 0px)); }
-  37.5%  { opacity: 1; transform: translateX(0); }
-  50%    { opacity: 0; transform: translateX(-414px); }
-  100%   { opacity: 0; transform: translateX(-414px); }
+  /* Hold at saved slide-5 position while right eco walks to camera (0–27% = 0–16s) */
+  0%   { opacity: 1; transform: translateX(var(--eco-l-start-tx, 0px)); }
+  27%  { opacity: 1; transform: translateX(var(--eco-l-start-tx, 0px)); }
+  /* Walk off screen left over next ~14s (27–50% = 16–30s) */
+  50%  { opacity: 0; transform: translateX(-500px); }
+  100% { opacity: 0; transform: translateX(-500px); }
 }
 
 @keyframes eco-r-ct-sequence {
-  0%     { opacity: 1; transform: translateX(var(--eco-r-start-tx, 0px)); }
-  20%    { opacity: 1; transform: translateX(351px); }
-  30%    { opacity: 1; transform: translateX(351px); }
-  43.75% { opacity: 0; transform: translateX(-300px); }
-  100%   { opacity: 0; transform: translateX(-300px); }
+  /* Walk from saved position to camera at x=850 (0–25% = 0–15s).
+     screen_x = 1240 - CSS_translateX; so x=850 → translateX=390 */
+  0%   { opacity: 1; transform: translateX(var(--eco-r-start-tx, 0px)); }
+  25%  { opacity: 1; transform: translateX(390px); }
+  /* Hold to place tripod (25–27% = 15–16.2s) */
+  27%  { opacity: 1; transform: translateX(390px); }
+  /* Walk off screen right (27–50% = 16.2–30s).
+     screen_x = 1240 - (-480) = 1720 */
+  50%  { opacity: 0; transform: translateX(-480px); }
+  100% { opacity: 0; transform: translateX(-480px); }
 }
 
 @keyframes eco-write {

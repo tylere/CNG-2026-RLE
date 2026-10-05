@@ -22,7 +22,7 @@ layout: full-bleed
 ---
 
 <div style="position:absolute; left:180px; top:230px" class="a-rise">
-  <img src="https://www.gravatar.com/avatar/d64c5512c45ef472df1ddad3dfb9d3ff?s=380" width="380" height="380" alt="Tyler Erickson" style="border-radius:50%; object-fit:cover; display:block; box-shadow:0 0 0 6px rgba(242,244,246,0.12)" />
+  <img src="/images/TylerErickson_400x400_bw.jpg" width="380" height="380" alt="Tyler Erickson" style="border-radius:50%; object-fit:cover; display:block; box-shadow:0 0 0 6px rgba(242,244,246,0.12)" />
 </div>
 
 <div style="position:absolute; left:720px; top:270px; width:800px">
@@ -46,6 +46,19 @@ layout: full-bleed
 </EcosystemScene>
 
 ---
+id: slide-global-ecosystems
+layout: iframe
+url: https://global-ecosystems.org/explore
+---
+
+<!--
+- Dismiss the dialogs
+- Go to the Analyze tab
+- Zoom map to Little Cottonwood Canyon
+- Query the ecosystems
+-->
+
+---
 id: slide-measure-ecosystems
 layout: full-bleed
 ---
@@ -58,6 +71,13 @@ layout: full-bleed
 ---
 
 <CameraTrapSlide />
+
+---
+id: slide-remote-sensing
+layout: full-bleed
+---
+
+<RemoteSensingSlide />
 
 ---
 id: slide-wildlife-insights
@@ -73,14 +93,14 @@ id: slide-question
 layout: full-bleed
 ---
 
-<div style="position:absolute; right:80px; top:40px; opacity:0.45">
+<div style="position:absolute; right:80px; top:40px; opacity:0.85">
   <img src="/images/colombia_ecosystems.png" height="820" alt="Map of Colombia's ecosystems, each in a distinct color" />
 </div>
 
-<div style="position:absolute; left:100px; top:280px" class="left-v">
-  <span class="statement a-rise">How at risk</span>
-  <span class="statement a-rise" style="--d:0.3s">are a country's</span>
-  <span class="statement hl a-rise" style="--d:0.6s">ecosystems?</span>
+<div style="position:absolute; left:100px; top:220px" class="left-v">
+  <span class="statement a-rise" style="font-size:4em">How at risk</span>
+  <span class="statement a-rise" style="--d:0.3s; font-size:4em">are a country's</span>
+  <span class="statement hl a-rise" style="--d:0.6s; font-size:4em">ecosystems?</span>
 </div>
 
 ---

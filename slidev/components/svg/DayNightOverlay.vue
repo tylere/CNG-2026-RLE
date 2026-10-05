@@ -14,12 +14,14 @@
 </template>
 
 <style scoped>
+/* Run continuously (not gated by --play-state) so all ecosystem slides share the same clock */
 :is(.night, .eyes) {
   animation-duration: 60s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-fill-mode: both;
-  animation-play-state: var(--play-state, paused);
+  animation-play-state: running;
+  animation-delay: -18s;
 }
 
 .night { opacity: 0.88; animation-name: night-veil; }

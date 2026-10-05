@@ -1,10 +1,10 @@
 import { ref } from 'vue'
 
-const position = ref<{ x: number } | null>(null)
+const position = ref<{ lx: number; rx: number } | null>(null)
 
 export function useEcologistPosition() {
   return {
     position,
-    save: (x: number) => { position.value = { x } }
+    save: (lx: number, rx: number) => { position.value = { lx, rx } }
   }
 }

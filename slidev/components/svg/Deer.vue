@@ -1,5 +1,12 @@
+<script setup lang="ts">
+const props = defineProps<{
+  cameraTrap?: boolean
+  atCamera?: boolean
+}>()
+</script>
+
 <template>
-  <g class="deer-container">
+  <g class="deer-container" :class="{ 'ct-approach': props.cameraTrap, 'at-camera': props.atCamera }">
     <g transform="translate(1132.0 720.0) scale(1.1)">
       <ellipse cx="6" cy="2" rx="34" ry="6" fill="rgba(0,0,0,0.28)"/>
       <rect x="-20" y="-28" width="5" height="28" fill="#6f4e32"/>
@@ -28,6 +35,18 @@
   animation-play-state: var(--play-state, paused);
 }
 
+/* Walk toward camera (right of it at x=950, foreground at y=800).
+   --deer-ct-delay defaults to 32s; override via :style for earlier approach. */
+.deer-container.ct-approach {
+  animation: deer-approach 12s ease-in-out var(--deer-ct-delay, 32s) both;
+  animation-play-state: var(--play-state, paused);
+}
+
+/* Start already at camera position (for slides continuing from camera-trap) */
+.deer-container.at-camera {
+  transform: translateX(-182px) translateY(80px);
+}
+
 @keyframes drink {
   0%, 8%    { transform: rotate(0deg); }
   20%       { transform: rotate(-62deg); }
@@ -36,5 +55,10 @@
   38%       { transform: rotate(-56deg); }
   44%       { transform: rotate(-62deg); }
   58%, 100% { transform: rotate(0deg); }
+}
+
+@keyframes deer-approach {
+  from { transform: translateX(0) translateY(0); }
+  to   { transform: translateX(-182px) translateY(80px); }
 }
 </style>

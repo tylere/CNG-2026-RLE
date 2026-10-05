@@ -19,6 +19,8 @@ import Porcupine from './svg/Porcupine.vue'
 
 const props = defineProps<{
   treesGrown?: boolean
+  cameraTrap?: boolean
+  noDeer?: boolean
 }>()
 
 // $page is the static page number of the slide this component lives in (Ref<number>).
@@ -33,7 +35,7 @@ const isActive = computed(() => currentPage.value === $page.value)
     viewBox="0 0 1600 900"
     overflow="visible"
     class="ecosystem-scene"
-    :class="{ active: isActive, 'trees-grown': props.treesGrown }"
+    :class="{ active: isActive, 'trees-grown': props.treesGrown, 'camera-trap': props.cameraTrap }"
     aria-label="Animated ecosystem scene"
     style="width:100%;height:100%"
   >
@@ -48,7 +50,7 @@ const isActive = computed(() => currentPage.value === $page.value)
     <!-- Fauna sorted by ground-contact y (smaller y = further away = renders first/behind).
          Skunk and Porcupine are foreground walkers so they render after Forest. -->
     <Owl />        <!-- y≈528 perched on branch, furthest back -->
-    <Deer />       <!-- y≈720 at lake -->
+    <Deer v-if="!props.noDeer" :camera-trap="props.cameraTrap" />   <!-- y≈720 at lake -->
     <Rabbit />     <!-- y≈750 at burrow (bush built into component) -->
     <Beaver />     <!-- y≈754 near left pond -->
     <Fox />        <!-- y≈810 peeking from behind trees -->

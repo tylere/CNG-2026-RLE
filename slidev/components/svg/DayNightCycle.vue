@@ -41,13 +41,15 @@
   transform-origin: 800px 1150px;
 }
 
-/* All day/night background elements share the 60s cycle */
+/* Day/night background runs continuously so all ecosystem slides share the same clock.
+   animation-delay: -18s starts mid-cycle at ~30% = daytime. */
 :is(.sun, .daysky, .glow, .stars) {
   animation-duration: 60s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-fill-mode: both;
-  animation-play-state: var(--play-state, paused);
+  animation-play-state: running;
+  animation-delay: -18s;
 }
 
 .sun { animation-name: sun-arc; }
