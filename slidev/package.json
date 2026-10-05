@@ -1,0 +1,24 @@
+{
+  "name": "cng-2026-rle",
+  "private": true,
+  "scripts": {
+    "dev": "slidev --open",
+    "build": "slidev build --base /",
+    "export": "slidev export",
+    "type-check": "vue-tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.50.0",
+    "@slidev/theme-default": "^0.25.0",
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^2.4.0",
+    "jsdom": "^24.0.0",
+    "playwright-chromium": "^1.63.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0",
+    "vue-tsc": "^2.0.0"
+  }
+}

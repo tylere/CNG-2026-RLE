@@ -1,0 +1,454 @@
+/* Font faces — loaded from Radiant Earth CDN */
+@font-face {
+  font-family: 'iA Writer Quattro S';
+  src: url('https://assets.radiant.earth/fonts/iAWriterQuattroS-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'iA Writer Quattro S';
+  src: url('https://assets.radiant.earth/fonts/iAWriterQuattroS-Italic.woff2') format('woff2');
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'iA Writer Quattro S';
+  src: url('https://assets.radiant.earth/fonts/iAWriterQuattroS-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'iA Writer Quattro S';
+  src: url('https://assets.radiant.earth/fonts/iAWriterQuattroS-BoldItalic.woff2') format('woff2');
+  font-weight: 700; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src: url('https://assets.radiant.earth/fonts/BerkeleyMono-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src: url('https://assets.radiant.earth/fonts/BerkeleyMono-Oblique.woff2') format('woff2');
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src: url('https://assets.radiant.earth/fonts/BerkeleyMono-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Berkeley Mono';
+  src: url('https://assets.radiant.earth/fonts/BerkeleyMono-Bold-Oblique.woff2') format('woff2');
+  font-weight: 700; font-style: italic; font-display: swap;
+}
+
+/* Base */
+:root {
+  --color-bg: #1D232B;
+  --color-text: #F2F4F6;
+  --color-yellow: #FFD626;
+  --color-blue: #418BD9;
+  --font-sans: 'iA Writer Quattro S', sans-serif;
+  --font-mono: 'Berkeley Mono', ui-monospace, monospace;
+}
+
+.slidev-layout {
+  font-family: var(--font-sans);
+  color: #F2F4F6;
+  background: #1D232B;
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  color: #F2F4F6;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+a {
+  color: #F2F4F6;
+  text-decoration: underline;
+  text-decoration-color: rgba(33, 38, 247, 0.9);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  text-decoration-color: #FFD626;
+}
+
+code, pre, .mono {
+  font-family: var(--font-mono);
+}
+
+:not(pre) > code {
+  background: rgba(242, 244, 246, 0.1);
+  color: inherit;
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+/* Utility classes */
+.big-number {
+  font-size: 11rem;
+  color: #FFD626;
+  font-weight: 700;
+  line-height: 1;
+  display: block;
+  text-align: center;
+}
+
+.center-v {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.muted {
+  color: rgba(242, 244, 246, 0.5) !important;
+  font-size: 0.85em;
+}
+
+.yellow { color: #FFD626; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FFD626;
+}
+
+.hl { color: #FFD626; }
+
+.formula {
+  font-size: 5.5rem;
+  color: #F2F4F6;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.formula .highlight {
+  color: #FFD626;
+  font-weight: 700;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.statement {
+  display: block;
+  margin: 0;
+  color: #F2F4F6;
+  font-size: 3em;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.statement.hl { color: #FFD626; }
+
+.statement-sub {
+  display: block;
+  margin: 0;
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.headline {
+  display: block;
+  margin: 0;
+  color: #F2F4F6;
+  font-size: 1.8em;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.slide-top {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.faint { opacity: 0.18; }
+.shadow { box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5); }
+.centered { text-align: center; }
+.left-v { display: flex; flex-direction: column; justify-content: center; }
+
+.avatar img {
+  border-radius: 50%;
+  border: 4px solid rgba(242, 244, 246, 0.15);
+}
+
+.deep-shade { background: rgba(0, 0, 0, 0.5); }
+.deep-copy { color: rgba(242, 244, 246, 0.7); font-size: 0.8em; }
+
+/* Browser-chrome frame */
+.frame {
+  border-radius: 8px 8px 4px 4px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
+.frame::before {
+  content: '';
+  display: block;
+  height: 28px;
+  background:
+    #3a3f4b
+    radial-gradient(circle at 16px 14px, #ff5f57 0 6px, transparent 6px),
+    radial-gradient(circle at 36px 14px, #febc2e 0 6px, transparent 6px),
+    radial-gradient(circle at 56px 14px, #28c840 0 6px, transparent 6px);
+}
+
+/* Book covers */
+.covers {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.tilt-l { transform: rotate(-4deg); }
+.tilt-r { transform: rotate(4deg); }
+
+/* Stats block */
+.stats .num {
+  font-size: 7rem;
+  font-weight: 700;
+  color: #FFD626;
+  line-height: 1;
+}
+
+.stats .unit {
+  font-size: 1.75rem;
+  color: rgba(242, 244, 246, 0.7);
+}
+
+/* Timed reveals — use with style="--d:Xs" */
+.a-fade {
+  opacity: 0;
+  animation: fade-in 0.8s ease-out var(--d, 0s) both;
+}
+
+.a-rise {
+  opacity: 0;
+  animation: rise-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0s) both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* SVG draw-on: element needs pathLength="1" */
+.draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw-on 0.7s ease-out var(--d, 0s) both;
+}
+
+@keyframes draw-on {
+  from { stroke-dashoffset: 1; opacity: 0; }
+  1%   { opacity: 1; }
+  to   { stroke-dashoffset: 0; opacity: 1; }
+}
+
+/* SVG canvas diagrams */
+svg.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+svg.canvas text {
+  fill: #F2F4F6;
+  font-family: 'iA Writer Quattro S', sans-serif;
+}
+
+svg.canvas .label {
+  fill: rgba(242, 244, 246, 0.55);
+  font-family: 'Berkeley Mono', monospace;
+  font-size: 22px;
+  letter-spacing: 0.12em;
+}
+
+svg.canvas .node {
+  fill: rgba(65, 139, 217, 0.12);
+  stroke: #418BD9;
+  stroke-width: 3;
+}
+
+svg.canvas .node.key {
+  fill: rgba(255, 214, 38, 0.1);
+  stroke: #FFD626;
+}
+
+svg.canvas .edge {
+  fill: none;
+  stroke: #FFD626;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+/* Friction pile: chips drop in on slide enter */
+.pile {
+  position: absolute;
+  inset: 170px 60px 60px;
+}
+
+.pile .chip {
+  position: absolute;
+  padding: 0.35em 0.8em;
+  border: 3px solid #418BD9;
+  border-radius: 999px;
+  background: #1D232B;
+  font-family: 'Berkeley Mono', monospace;
+  font-size: 0.72em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: rotate(var(--r, 0deg));
+}
+
+.pile .chip.warn { border-color: #e0595a; }
+
+.pile.active .chip {
+  animation: chip-drop 0.6s cubic-bezier(0.3, 1.4, 0.5, 1) var(--d, 0s) both;
+}
+
+@keyframes chip-drop {
+  from { opacity: 0; transform: translateY(-260px) rotate(0deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(var(--r, 0deg)); }
+}
+
+/* Three-card grid */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  margin-top: 1.5rem;
+}
+
+.cards .card {
+  padding: 1.1em 1em;
+  border-radius: 12px;
+  background: rgba(65, 139, 217, 0.1);
+  border-top: 6px solid #FFD626;
+}
+
+.cards .card h3 {
+  margin: 0 0 0.6em;
+  font-size: 1.05em;
+}
+
+.cards .card pre {
+  margin: 0;
+  width: 100%;
+  box-shadow: none;
+  font-size: 0.5em;
+}
+
+.cards .card .big-icon {
+  display: block;
+  margin: 0.2em auto 0;
+  height: 150px;
+}
+
+/* Lesson list with red-square bullets */
+.lessons ul {
+  display: block;
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.lessons li {
+  margin: 0.6em 0;
+  padding-left: 1.4em;
+  position: relative;
+  font-size: 1.1em;
+}
+
+.lessons li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 3px;
+  background: #e0595a;
+}
+
+/* Book covers */
+.covers img {
+  height: 620px;
+  margin: 0;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Light card variant for setup/info slides */
+.light-card {
+  background: rgba(242, 244, 246, 0.06);
+  border: 1px solid rgba(242, 244, 246, 0.12);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+/* Hide the Goto slide-search dialog — it appears on G keypress and is not wanted in this presentation */
+#slidev-goto-dialog { display: none !important; }
+
+/* Title slide: slow Ken Burns zoom-in on hero image */
+.slidev-layout.title-slide {
+  position: relative;
+  overflow: hidden;
+  background-image: none !important;
+}
+
+.slidev-layout.title-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/images/hero_forest_coast.jpg') center / cover no-repeat;
+  animation: hero-zoom 18s ease-out both;
+  transform-origin: center;
+}
+
+.slidev-layout.title-slide > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes hero-zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.15); }
+}
+
+/* Pre-grown trees: skip the grow animation so slides 4/5 don't re-animate the forest */
+.ecosystem-scene.trees-grown .grow {
+  animation-name: none !important;
+}
+
+/* With trees immediately at full scale, the shadow ellipses (first child of each .grow group)
+   create a heavy overlay. Reduce their opacity to match the lighter ground in slide 3. */
+.ecosystem-scene.trees-grown .grow > ellipse:first-child {
+  fill: rgba(0,0,0,0.08) !important;
+}
