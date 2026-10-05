@@ -108,11 +108,16 @@ id: slide-iucn
 layout: full-bleed
 ---
 
-<div class="center-v" style="height:100%; gap:1.5rem">
+<div style="position:absolute; left:120px; top:0; bottom:0; display:flex; align-items:center">
+  <img src="/images/iucn_logo.svg" width="420" alt="IUCN logo" class="a-rise" style="background:white; border-radius:12px; padding:2rem" />
+</div>
+
+<div style="position:absolute; left:660px; top:0; bottom:0; display:flex; flex-direction:column; justify-content:center; gap:1.4rem">
   <span class="eyebrow a-rise">International Union for Conservation of Nature</span>
-  <span class="statement a-rise" style="--d:0.2s; font-size:5em">IUCN</span>
-  <span class="statement-sub a-rise" style="--d:0.4s">Independent · founded <span class="hl">1948</span> · UN General Assembly observer</span>
-  <span v-click class="statement-sub">Drafted the <span class="hl">Convention on Biological Diversity</span></span>
+  <span class="statement a-rise" style="--d:0.2s; font-size:4em">IUCN</span>
+  <span class="statement-sub a-rise" style="--d:0.4s">Independent · founded <span class="hl">1948</span></span>
+  <span class="statement-sub a-rise" style="--d:0.6s">UN General Assembly <span class="hl">observer</span></span>
+  <span v-click class="statement-sub">Drafted the <span class="hl">Convention on<br>Biological Diversity</span></span>
 </div>
 
 <a href="https://iucn.org/about-iucn" style="position:absolute; bottom:52px; right:80px" class="mono muted">iucn.org/about-iucn</a>
