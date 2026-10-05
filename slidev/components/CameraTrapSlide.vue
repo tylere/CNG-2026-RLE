@@ -111,7 +111,8 @@ const flashDelay = computed(() => `${deerDelayS.value + 12}s`)
   transform-box: fill-box;
   transform-origin: center;
   opacity: 0;
-  animation: eye-startle 5s ease-out var(--ct-flash-delay, 44s) both;
+  /* forwards, not both: during the delay the eyes must stay hidden, not show the 0% keyframe */
+  animation: eye-startle 5s ease-out var(--ct-flash-delay, 44s) forwards;
   animation-play-state: var(--play-state, paused);
 }
 

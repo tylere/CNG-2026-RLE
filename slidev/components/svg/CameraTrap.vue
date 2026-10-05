@@ -1,17 +1,23 @@
 <script setup lang="ts">
+import { useId } from 'vue'
+
 const props = defineProps<{
   tripodGrown?: boolean
 }>()
+
+// Per-instance ids: Slidev keeps neighbouring slides mounted, and a url(#id) that
+// resolves to a copy on a hidden slide paints nothing.
+const uid = useId()
 </script>
 
 <template>
   <g class="camera-trap">
     <defs>
-      <radialGradient id="ct-ir-glow-g2" cx="0.5" cy="0.5" r="0.5">
+      <radialGradient :id="`${uid}-ct-ir-glow-g2`" cx="0.5" cy="0.5" r="0.5">
         <stop offset="0" stop-color="#ff5500" stop-opacity="0.75"/>
         <stop offset="1" stop-color="#ff5500" stop-opacity="0"/>
       </radialGradient>
-      <radialGradient id="ct-flash-glow-g" cx="0.5" cy="0.5" r="0.5">
+      <radialGradient :id="`${uid}-ct-flash-glow-g`" cx="0.5" cy="0.5" r="0.5">
         <stop offset="0"   stop-color="#ffffff" stop-opacity="0.98"/>
         <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.6"/>
         <stop offset="1"   stop-color="#ffffff" stop-opacity="0"/>
@@ -39,9 +45,9 @@ const props = defineProps<{
     </g>
     <!-- IR glow and white flash overlays (scene coordinates) -->
     <ellipse class="ct-ir-flash" cx="950" cy="690" rx="260" ry="180"
-      fill="url(#ct-ir-glow-g2)" opacity="0"/>
+      :fill="`url(#${uid}-ct-ir-glow-g2)`" opacity="0"/>
     <ellipse class="ct-flash" cx="870" cy="690" rx="500" ry="380"
-      fill="url(#ct-flash-glow-g)" opacity="0"/>
+      :fill="`url(#${uid}-ct-flash-glow-g)`" opacity="0"/>
   </g>
 </template>
 

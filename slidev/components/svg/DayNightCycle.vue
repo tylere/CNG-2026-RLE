@@ -1,5 +1,21 @@
+<script setup lang="ts">
+import { useId } from 'vue'
+
+// Per-instance ids: Slidev keeps neighbouring slides mounted, and a url(#id) that
+// resolves to a copy on a hidden slide paints nothing.
+const uid = useId()
+</script>
+
 <template>
   <g class="day-night-cycle">
+    <defs>
+      <radialGradient :id="`${uid}-side-sun`">
+        <stop offset="0.45" stop-color="#FFD626" stop-opacity="0.45"/><stop offset="1" stop-color="#FFD626" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient :id="`${uid}-side-glow`">
+        <stop offset="0" stop-color="#ff9a4a" stop-opacity="0.55"/><stop offset="1" stop-color="#ff9a4a" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
     <rect class="daysky" x="-320" y="-260" width="2240" height="900"/>
     <!-- Stars: visible at night, fade when the sun comes up -->
     <g class="stars">
@@ -28,9 +44,9 @@
       <circle cx="1202" cy="272" r="1.5" fill="white"/>
       <circle cx="1498" cy="252" r="1.0" fill="white"/>
     </g>
-    <ellipse class="glow dawn" cx="60" cy="560" rx="900" ry="360" fill="url(#side-glow)"/>
-    <ellipse class="glow dusk" cx="1540" cy="560" rx="900" ry="360" fill="url(#side-glow)"/>
-    <g class="sun"><circle cx="800" cy="70" r="95" fill="url(#side-sun)"/><circle cx="800" cy="70" r="46" fill="#FFD626"/></g>
+    <ellipse class="glow dawn" cx="60" cy="560" rx="900" ry="360" :fill="`url(#${uid}-side-glow)`"/>
+    <ellipse class="glow dusk" cx="1540" cy="560" rx="900" ry="360" :fill="`url(#${uid}-side-glow)`"/>
+    <g class="sun"><circle cx="800" cy="70" r="95" :fill="`url(#${uid}-side-sun)`"/><circle cx="800" cy="70" r="46" fill="#FFD626"/></g>
   </g>
 </template>
 

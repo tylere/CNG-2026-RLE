@@ -236,6 +236,7 @@ code, pre, .mono {
 .stats .unit {
   font-size: 1.75rem;
   color: rgba(242, 244, 246, 0.7);
+  margin-left: 0.5em;
 }
 
 /* Timed reveals — use with style="--d:Xs" */
@@ -404,6 +405,43 @@ svg.canvas .edge {
   margin: 0;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
 }
+
+/* 3-D report: set --pages; the page-edge thickness is proportional to it */
+.book {
+  --t: calc(var(--pages) * 0.2px);
+  position: relative;
+  display: inline-block;
+  transform-style: preserve-3d;
+  transform: perspective(2400px) rotateY(-30deg);
+}
+.book img { display: block; }
+.book::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 100%;
+  width: var(--t);
+  transform-origin: left center;
+  transform: rotateY(90deg);
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.35)),
+    repeating-linear-gradient(90deg, #f2efe6 0 2px, #cfc9bb 2px 3px);
+}
+/* Mirror: cover faces right, page edges on the left */
+.book.face-right { transform: perspective(2400px) rotateY(30deg); }
+.book.face-right::after {
+  left: auto;
+  right: 100%;
+  transform-origin: right center;
+  transform: rotateY(-90deg);
+  background:
+    linear-gradient(270deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.35)),
+    repeating-linear-gradient(90deg, #f2efe6 0 2px, #cfc9bb 2px 3px);
+}
+/* Screen variant: a solid grey edge instead of paper pages (for website screenshots).
+   Must come after the face-right rule, which sets its own background. */
+.book.screen::after { background: linear-gradient(270deg, #6b7178, #9aa0a6); }
 
 /* Light card variant for setup/info slides */
 .light-card {
