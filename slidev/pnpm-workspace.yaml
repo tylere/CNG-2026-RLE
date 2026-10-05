@@ -1,4 +1,4 @@
 allowBuilds:
   esbuild: true
-  playwright-chromium: set this to true or false
+  playwright-chromium: true
   vue-demi: true
