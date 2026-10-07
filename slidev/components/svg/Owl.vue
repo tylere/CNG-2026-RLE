@@ -8,8 +8,8 @@
         <circle cx="8" cy="-6" r="8" fill="#cbbb9f"/>
         <circle cx="-8" cy="-6" r="4.5" fill="#FFD626"/>
         <circle cx="8" cy="-6" r="4.5" fill="#FFD626"/>
-        <circle cx="-8" cy="-6" r="2" fill="#1a1a1a"/>
-        <circle cx="8" cy="-6" r="2" fill="#1a1a1a"/>
+        <circle class="eye" cx="-8" cy="-6" r="2" fill="#1a1a1a"/>
+        <circle class="eye" cx="8" cy="-6" r="2" fill="#1a1a1a"/>
         <polygon points="-3,2 3,2 0,8" fill="#e3a83a"/>
       </g>
     </g>
@@ -21,8 +21,8 @@
         <circle cx="8" cy="-6" r="8" fill="#cbbb9f"/>
         <circle cx="-8" cy="-6" r="4.5" fill="#FFD626"/>
         <circle cx="8" cy="-6" r="4.5" fill="#FFD626"/>
-        <circle cx="-8" cy="-6" r="2" fill="#1a1a1a"/>
-        <circle cx="8" cy="-6" r="2" fill="#1a1a1a"/>
+        <circle class="eye" cx="-8" cy="-6" r="2" fill="#1a1a1a"/>
+        <circle class="eye" cx="8" cy="-6" r="2" fill="#1a1a1a"/>
         <polygon points="-3,2 3,2 0,8" fill="#e3a83a"/>
       </g>
     </g>

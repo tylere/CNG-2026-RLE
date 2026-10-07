@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useNav, useSlideContext } from '@slidev/client'
+import { syncSceneClock } from '../composables/useSceneClock'
 import DayNightCycle from './svg/DayNightCycle.vue'
 import DayNightOverlay from './svg/DayNightOverlay.vue'
 import Clouds from './svg/Clouds.vue'
@@ -28,10 +29,18 @@ const props = defineProps<{
 const { $page } = useSlideContext()
 const { currentPage } = useNav()
 const isActive = computed(() => currentPage.value === $page.value)
+
+// Continue the shared day/night clock when this slide is shown (its animations restart on show).
+// Wait a frame so the slide is visible and its CSS animations exist.
+const svgEl = ref<SVGSVGElement | null>(null)
+watch(isActive, (active) => {
+  if (active) requestAnimationFrame(() => { if (svgEl.value) syncSceneClock(svgEl.value) })
+}, { immediate: true })
 </script>
 
 <template>
   <svg
+    ref="svgEl"
     viewBox="0 0 1600 900"
     overflow="visible"
     class="ecosystem-scene"
@@ -65,6 +74,9 @@ const isActive = computed(() => currentPage.value === $page.value)
     <!-- Above-canopy elements -->
     <Birds />
     <WeatherEvent />
+
+    <!-- Slide-specific content that should darken at night (above the forest, below the veil) -->
+    <slot name="under-night" />
 
     <!-- Night veil + animal eyes rendered above terrain/forest so they darken the ground correctly -->
     <DayNightOverlay />

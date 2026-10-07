@@ -2,11 +2,12 @@
 const props = defineProps<{
   cameraTrap?: boolean
   atCamera?: boolean
+  push?: boolean
 }>()
 </script>
 
 <template>
-  <g class="deer-container" :class="{ 'ct-approach': props.cameraTrap, 'at-camera': props.atCamera }">
+  <g class="deer-container" :class="{ 'ct-approach': props.cameraTrap, 'at-camera': props.atCamera, 'ct-push': props.push }">
     <g transform="translate(1132.0 720.0) scale(1.1)">
       <ellipse cx="6" cy="2" rx="34" ry="6" fill="rgba(0,0,0,0.28)"/>
       <rect x="-20" y="-28" width="5" height="28" fill="#6f4e32"/>
@@ -20,7 +21,7 @@ const props = defineProps<{
         <ellipse cx="-31" cy="-74" rx="12" ry="7" transform="rotate(-20 -31 -74)" fill="#976c46"/>
         <polygon points="-24,-80 -18,-90 -16,-78" fill="#6f4e32"/>
         <path d="M-27 -80 Q-30 -96 -40 -100 M-29 -91 L-22 -98 M-23 -80 Q-16 -95 -8 -98" stroke="#6f4e32" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <circle cx="-33" cy="-76" r="1.8" fill="#1a1a1a"/>
+        <circle class="eye" cx="-33" cy="-76" r="1.8" fill="#1a1a1a"/>
         <circle cx="-42" cy="-71" r="2" fill="#1a1a1a"/>
       </g>
     </g>
@@ -36,9 +37,19 @@ const props = defineProps<{
 }
 
 /* Walk toward camera (right of it at x=950, foreground at y=800).
-   --deer-ct-delay defaults to 32s; override via :style for earlier approach. */
+   --deer-ct-delay defaults to 32s; override via :style for earlier approach.
+   --deer-start-x/y and --deer-ct-duration let a slide resume a partly finished walk. */
 .deer-container.ct-approach {
-  animation: deer-approach 12s ease-in-out var(--deer-ct-delay, 32s) both;
+  animation: deer-approach var(--deer-ct-duration, 12s) ease-in-out var(--deer-ct-delay, 32s) both;
+  animation-play-state: var(--play-state, paused);
+}
+
+/* After the approach, nudge the tripod over (slide 7). Fill forwards only, so the approach
+   controls the deer until the push starts. --deer-push-delay is set by the slide. */
+.deer-container.ct-approach.ct-push {
+  animation:
+    deer-approach var(--deer-ct-duration, 12s) ease-in-out var(--deer-ct-delay, 32s) both,
+    deer-push 1.6s ease-in-out var(--deer-push-delay, 20s) forwards;
   animation-play-state: var(--play-state, paused);
 }
 
@@ -57,8 +68,14 @@ const props = defineProps<{
   58%, 100% { transform: rotate(0deg); }
 }
 
+@keyframes deer-push {
+  0%   { transform: translateX(-182px) translateY(80px); }
+  55%  { transform: translateX(-218px) translateY(80px); }
+  100% { transform: translateX(-204px) translateY(80px); }
+}
+
 @keyframes deer-approach {
-  from { transform: translateX(0) translateY(0); }
+  from { transform: translateX(var(--deer-start-x, 0px)) translateY(var(--deer-start-y, 0px)); }
   to   { transform: translateX(-182px) translateY(80px); }
 }
 </style>

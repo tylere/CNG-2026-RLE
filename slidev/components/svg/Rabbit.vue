@@ -10,8 +10,8 @@
         <!-- Layer 1: rabbit body — renders behind the bush -->
         <g class="peek" style="--d:12s; --p:19s; --dx:0px; --dy:81px">
           <circle cx="0" cy="12" r="15" fill="#b9b4ac"/>
-          <circle cx="-6" cy="9" r="2.3" fill="#2a2a2a"/>
-          <circle cx="6" cy="9" r="2.3" fill="#2a2a2a"/>
+          <circle class="eye" cx="-6" cy="9" r="2.3" fill="#2a2a2a"/>
+          <circle class="eye" cx="6" cy="9" r="2.3" fill="#2a2a2a"/>
           <circle cx="0" cy="16" r="2" fill="#d98c8c"/>
         </g>
 

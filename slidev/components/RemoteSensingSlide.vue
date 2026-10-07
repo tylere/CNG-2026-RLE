@@ -1,16 +1,31 @@
 <script setup lang="ts">
-import CameraTrap from './svg/CameraTrap.vue'
+import { computed } from 'vue'
 import Deer from './svg/Deer.vue'
+import AcousticSensor from './svg/AcousticSensor.vue'
+import { useDeerPosition } from '../composables/useDeerPosition'
+
+// Resume the deer where slide 6 left it, finishing the walk at the same pace (12s for the full walk).
+const { progress } = useDeerPosition()
+const p = computed(() => progress.value ?? 0)
+const walkS = computed(() => Math.max(0.01, (1 - p.value) * 12))
+const deerStyle = computed(() => ({
+  '--deer-ct-delay': '2s',
+  '--deer-ct-duration': `${walkS.value}s`,
+  '--deer-start-x': `${-182 * p.value}px`,
+  '--deer-start-y': `${80 * Math.min(p.value, 1)}px`,
+}))
 </script>
 
 <template>
-  <!-- Scene: tripod grown, ecologists gone. Deer walks in, knocks tripod into pond.
-       Then drone, aircraft, and satellite survey the area in sequence. -->
+  <!-- Scene: tripod gone (knocked into the lake on slide 6), ecologists gone.
+       Drone, aircraft, and satellite survey the area in sequence. -->
   <EcosystemScene trees-grown no-deer>
-    <!-- Deer walks from lake to camera (2s delay), arrives at t=14s, then knocks tripod -->
-    <Deer camera-trap :style="{ '--deer-ct-delay': '2s' }" />
-    <!-- Tripod starts grown; flash fires at t=14s (deer arrival), falls at t=15s -->
-    <CameraTrap tripod-grown :style="{ '--ct-flash-delay': '14s', '--ct-fall-delay': '15s' }" />
+    <!-- Deer continues from where slide 6 left it (2s delay), under the night veil -->
+    <template #under-night>
+      <!-- Acoustic sensor attached on slide 6 -->
+      <AcousticSensor placed />
+      <Deer camera-trap :style="deerStyle" />
+    </template>
 
     <!-- Survey vehicles fly across in sequence.
          Satellite first (farthest/highest = paints behind others), then aircraft, then drone. -->
