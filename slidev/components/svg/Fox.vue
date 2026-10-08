@@ -8,8 +8,8 @@
         <polygon points="20,-22 13,-10 8,-10" fill="#2a1c14"/>
         <polygon points="-22,2 -8,6 0,22" fill="#f3ece2"/>
         <polygon points="22,2 8,6 0,22" fill="#f3ece2"/>
-        <circle cx="-8" cy="-2" r="2.6" fill="#2a1c14"/>
-        <circle cx="8" cy="-2" r="2.6" fill="#2a1c14"/>
+        <circle class="eye" cx="-8" cy="-2" r="2.6" fill="#2a1c14"/>
+        <circle class="eye" cx="8" cy="-2" r="2.6" fill="#2a1c14"/>
         <circle cx="0" cy="19" r="3" fill="#2a1c14"/>
       </g>
     </g>
@@ -22,8 +22,8 @@
           <polygon points="20,-22 13,-10 8,-10" fill="#2a1c14"/>
           <polygon points="-22,2 -8,6 0,22" fill="#f3ece2"/>
           <polygon points="22,2 8,6 0,22" fill="#f3ece2"/>
-          <circle cx="-8" cy="-2" r="2.6" fill="#2a1c14"/>
-          <circle cx="8" cy="-2" r="2.6" fill="#2a1c14"/>
+          <circle class="eye" cx="-8" cy="-2" r="2.6" fill="#2a1c14"/>
+          <circle class="eye" cx="8" cy="-2" r="2.6" fill="#2a1c14"/>
           <circle cx="0" cy="19" r="3" fill="#2a1c14"/>
         </g>
       </g>

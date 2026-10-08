@@ -1,22 +1,38 @@
 <script setup lang="ts">
-import CameraTrap from './svg/CameraTrap.vue'
+import { computed } from 'vue'
 import Deer from './svg/Deer.vue'
+import AcousticSensor from './svg/AcousticSensor.vue'
+import { useDeerPosition } from '../composables/useDeerPosition'
+
+// Resume the deer where slide 6 left it, finishing the walk at the same pace (12s for the full walk).
+const { progress } = useDeerPosition()
+const p = computed(() => progress.value ?? 0)
+const walkS = computed(() => Math.max(0.01, (1 - p.value) * 12))
+const deerStyle = computed(() => ({
+  '--deer-ct-delay': '2s',
+  '--deer-ct-duration': `${walkS.value}s`,
+  '--deer-start-x': `${-182 * p.value}px`,
+  '--deer-start-y': `${80 * Math.min(p.value, 1)}px`,
+}))
 </script>
 
 <template>
-  <!-- Scene: tripod grown, ecologists gone. Deer walks in, knocks tripod into pond.
-       Then drone, aircraft, and satellite survey the area in sequence. -->
+  <!-- Scene: tripod gone (knocked into the lake on slide 6), ecologists gone.
+       Drone, aircraft, and satellite survey the area in sequence. -->
   <EcosystemScene trees-grown no-deer>
-    <!-- Deer walks from lake to camera (2s delay), arrives at t=14s, then knocks tripod -->
-    <Deer camera-trap :style="{ '--deer-ct-delay': '2s' }" />
-    <!-- Tripod starts grown; flash fires at t=14s (deer arrival), falls at t=15s -->
-    <CameraTrap tripod-grown :style="{ '--ct-flash-delay': '14s', '--ct-fall-delay': '15s' }" />
+    <!-- Deer continues from where slide 6 left it (2s delay), under the night veil -->
+    <template #under-night>
+      <!-- Acoustic sensor attached on slide 6 -->
+      <AcousticSensor placed />
+      <Deer camera-trap :style="deerStyle" />
+    </template>
 
     <!-- Survey vehicles fly across in sequence.
          Satellite first (farthest/highest = paints behind others), then aircraft, then drone. -->
 
-    <!-- Satellite: high altitude, slight arc, left to right, 8s at t=36s -->
+    <!-- Satellite: high altitude, constant speed with a slight arc, left to right, 10s from t=13s -->
     <g class="satellite-vehicle">
+      <g class="satellite-arc">
       <g transform="translate(0 110)">
         <!-- Body -->
         <rect x="-20" y="-20" width="40" height="40" rx="5" fill="#c0c8d8" stroke="#8898b0" stroke-width="2.5"/>
@@ -39,39 +55,37 @@ import Deer from './svg/Deer.vue'
         <line x1="0" y1="20" x2="0" y2="32" stroke="#9ab0c8" stroke-width="2.5"/>
         <ellipse cx="0" cy="32" rx="9" ry="5" fill="none" stroke="#9ab0c8" stroke-width="2"/>
       </g>
-    </g>
-
-    <!-- Aircraft: Cessna high-wing prop plane, right to left (nose faces left), 16s at t=18s -->
-    <g class="aircraft-vehicle">
-      <g transform="translate(0 360)">
-        <!-- Fuselage: boxy cabin tapering to pointed nose (left) and narrow tail (right) -->
-        <path d="M-68,0 C-55,-6 -15,-9 30,-7 L58,-3 L58,3 L30,7 C-15,9 -55,6 -68,0 Z" fill="#c8d4e8"/>
-        <!-- Cabin windows -->
-        <rect x="-22" y="-7" width="18" height="11" rx="2" fill="#dae8f4" opacity="0.85"/>
-        <rect x="0" y="-7" width="15" height="11" rx="2" fill="#dae8f4" opacity="0.85"/>
-        <!-- High straight wing (on top, runs left-right perpendicular to fuselage) -->
-        <!-- Near wing half (toward viewer = below fuselage in top-down perspective) -->
-        <polygon points="-18,7 38,7 50,32 28,32" fill="#b0c2dc"/>
-        <!-- Far wing half (away from viewer = above fuselage) -->
-        <polygon points="-18,-7 38,-7 50,-32 28,-32" fill="#b8cce0"/>
-        <!-- Wing struts (characteristic Cessna: attach low fuselage to high wing) -->
-        <line x1="5" y1="7" x2="12" y2="32" stroke="#8898b0" stroke-width="2" stroke-linecap="round"/>
-        <line x1="5" y1="-7" x2="12" y2="-32" stroke="#8898b0" stroke-width="2" stroke-linecap="round"/>
-        <!-- Horizontal stabilizer (small tail planes) -->
-        <polygon points="45,3 34,3 38,18 50,14" fill="#a8b8cc"/>
-        <polygon points="45,-3 34,-3 38,-18 50,-14" fill="#a8b8cc"/>
-        <!-- Vertical tail fin (visible from top as raised edge) -->
-        <polygon points="50,0 42,-3 48,-22 56,-8" fill="#9098ac"/>
-        <!-- Engine cowl (round, at nose) -->
-        <ellipse cx="-70" cy="0" rx="9" ry="7" fill="#808898"/>
-        <!-- Spinning propeller disc -->
-        <ellipse cx="-82" cy="0" rx="3" ry="26" fill="rgba(200,210,225,0.38)" stroke="#5a606e" stroke-width="1.5"/>
-        <!-- Sensor pod under fuselage belly -->
-        <ellipse cx="-10" cy="0" rx="12" ry="5" fill="#20283e" opacity="0.8"/>
       </g>
     </g>
 
-    <!-- Drone: above tree canopy, left to right, 14s at t=2s -->
+    <!-- Aircraft: Cessna high-wing prop plane, right to left (nose faces left), 16s at t=3s -->
+    <g class="aircraft-vehicle">
+      <!-- Side view, facing left (direction of flight) -->
+      <g transform="translate(0 360) scale(1.25)">
+        <!-- Tail: fin and horizontal stabilizer -->
+        <polygon points="40,-9 54,-34 66,-34 66,-6" fill="#c9d3e3"/>
+        <rect x="46" y="-6" width="24" height="4" rx="2" fill="#b3c0d4"/>
+        <!-- Fuselage -->
+        <path d="M-68,-2 C-66,-11 -56,-16 -44,-17 L20,-17 L64,-8 L68,-3 L64,1 L28,4 C-10,8 -48,9 -64,5 Z" fill="#eef2f8"/>
+        <path d="M-62,-1 L64,-4" stroke="#3a6ea5" stroke-width="2.5"/>
+        <!-- Cabin windows -->
+        <polygon points="-44,-13 -24,-14 -24,-5 -50,-5" fill="#5b7fa6"/>
+        <rect x="-20" y="-14" width="18" height="9" rx="1.5" fill="#5b7fa6"/>
+        <!-- High wing (edge-on) and strut -->
+        <rect x="-48" y="-22" width="72" height="6" rx="3" fill="#c9d3e3"/>
+        <line x1="16" y1="-16" x2="4" y2="5" stroke="#9aa6b8" stroke-width="1.6"/>
+        <!-- Landing gear -->
+        <line x1="-16" y1="6" x2="-20" y2="16" stroke="#6b7480" stroke-width="2.5"/>
+        <circle cx="-21" cy="18" r="4.5" fill="#2a2d33"/>
+        <line x1="-58" y1="5" x2="-58" y2="15" stroke="#6b7480" stroke-width="2"/>
+        <circle cx="-58" cy="17" r="3.5" fill="#2a2d33"/>
+        <!-- Spinner and spinning propeller -->
+        <ellipse cx="-70" cy="-2" rx="6" ry="5" fill="#8a929e"/>
+        <ellipse class="prop" cx="-75" cy="-2" rx="2" ry="18" fill="rgba(220,228,240,0.45)"/>
+      </g>
+    </g>
+
+    <!-- Drone: above tree canopy, left to right with two hovering stops, 16s from t=8s -->
     <g class="drone-vehicle">
       <g transform="translate(0 460)">
         <!-- Central body -->
@@ -102,27 +116,50 @@ import Deer from './svg/Deer.vue'
 </template>
 
 <style scoped>
-/* Drone: left → right above tree canopy (y=460), 14s at t=20s (5s after tripod falls at t=15s) */
+/* Drone: left → right above tree canopy (y=460), 16s from t=8s with two hovering stops */
 .drone-vehicle {
-  animation: drone-fly 14s linear 20s both;
+  animation: drone-fly 16s linear 8s both;
   animation-play-state: var(--play-state, paused);
 }
 
-/* Cessna: right → left at mid altitude (y=360), 16s at t=36s (after drone exits at t=34s) */
+/* Cessna: right → left at mid altitude (y=360), 16s starting at t=3s */
 .aircraft-vehicle {
-  animation: aircraft-fly 16s linear 36s both;
+  animation: aircraft-fly 16s linear 3s both;
   animation-play-state: var(--play-state, paused);
 }
 
-/* Satellite: left → right with gentle arc at high altitude (y=110), 8s at t=54s */
+/* Satellite: left → right at constant speed, high altitude (y=110), 10s from t=13s */
 .satellite-vehicle {
-  animation: satellite-fly 8s ease-in-out 54s both;
+  animation: satellite-fly 10s linear 13s both;
   animation-play-state: var(--play-state, paused);
 }
 
+/* Fly, hover, fly, hover, fly: easing into and out of each stop */
 @keyframes drone-fly {
-  from { transform: translateX(-120px); }
-  to   { transform: translateX(1720px); }
+  0%        { transform: translateX(-120px); animation-timing-function: ease-out; }
+  28%, 42%  { transform: translateX(520px);  animation-timing-function: ease-in-out; }
+  68%, 80%  { transform: translateX(1080px); animation-timing-function: ease-in; }
+  100%      { transform: translateX(1720px); }
+}
+/* Gentle bob while hovering/flying */
+.drone-vehicle > g {
+  animation: drone-bob 1.6s ease-in-out infinite alternate;
+  animation-play-state: var(--play-state, paused);
+}
+@keyframes drone-bob {
+  from { transform: translate(0, 460px); }
+  to   { transform: translate(0, 466px); }
+}
+
+.prop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: prop-spin 0.12s linear infinite;
+  animation-play-state: var(--play-state, paused);
+}
+@keyframes prop-spin {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(0.25); }
 }
 
 @keyframes aircraft-fly {
@@ -130,10 +167,17 @@ import Deer from './svg/Deer.vue'
   to   { transform: translateX(-200px); }
 }
 
-/* Arc: enter and exit at same height; 25px higher at midpoint to suggest orbital curvature */
+/* Constant speed across; the inner arc group rises and falls smoothly to suggest orbital curvature */
 @keyframes satellite-fly {
-  0%   { transform: translateX(-160px) translateY(0px); }
-  50%  { transform: translateX(800px)  translateY(-28px); }
-  100% { transform: translateX(1760px) translateY(0px); }
+  from { transform: translateX(-160px); }
+  to   { transform: translateX(1760px); }
+}
+.satellite-arc {
+  animation: satellite-arc 5s ease-in-out 13s 2 alternate both;
+  animation-play-state: var(--play-state, paused);
+}
+@keyframes satellite-arc {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-28px); }
 }
 </style>

@@ -35,6 +35,8 @@ onUnmounted(() => cancelAnimationFrame(rafId))
 </script>
 
 <template>
+  <!-- Single root so a parent's :style (e.g. --eco-l-start-tx) is applied and inherited -->
+  <g>
   <!-- Left ecologist: clipboard and pencil -->
   <g v-if="side === 'left'" :transform="`translate(${startX} 870)`">
   <g
@@ -101,18 +103,19 @@ onUnmounted(() => cancelAnimationFrame(rafId))
     <path d="M-28,-120 Q0,-108 26,-120" stroke="#6a5a40" stroke-width="3" fill="none"/>
   </g>
   </g>
+  </g>
 </template>
 
 <style scoped>
 .ecologist { opacity: 0; }
 
 .ecologist.eco-l {
-  animation: eco-l-wander 120s linear 2.5s both;
+  animation: eco-l-wander 120s linear 1s both;
   animation-play-state: var(--play-state, paused);
 }
 
 .ecologist.eco-r {
-  animation: eco-r-wander 120s linear 4.5s both;
+  animation: eco-r-wander 120s linear 3s both;
   animation-play-state: var(--play-state, paused);
 }
 
@@ -135,6 +138,12 @@ onUnmounted(() => cancelAnimationFrame(rafId))
 
 .eco-write {
   animation: eco-write 1.8s ease-in-out 15s infinite both;
+  animation-play-state: var(--play-state, paused);
+}
+
+/* Camera-trap slide: work the arms while attaching the acoustic sensor (2.6–6.2s) */
+.ecologist.eco-l-ct .eco-write {
+  animation: eco-write 0.9s ease-in-out 2.6s 4 both;
   animation-play-state: var(--play-state, paused);
 }
 
@@ -163,7 +172,7 @@ onUnmounted(() => cancelAnimationFrame(rafId))
 }
 
 @keyframes eco-l-wander {
-  0%    { opacity: 0; transform: translateX(-640px); }
+  0%    { opacity: 0; transform: translateX(-330px); }  /* just inside the slide edge, fading in */
   1%    { opacity: 1; }
   8%    { opacity: 1; transform: translateX(0); }
   18%   { transform: translateX(0); }
@@ -183,7 +192,7 @@ onUnmounted(() => cancelAnimationFrame(rafId))
 }
 
 @keyframes eco-r-wander {
-  0%    { opacity: 0; transform: translateX(-640px); }
+  0%    { opacity: 0; transform: translateX(-330px); }  /* just inside the slide edge, fading in */
   1%    { opacity: 1; }
   8%    { opacity: 1; transform: translateX(0); }
   20%   { transform: translateX(0); }
@@ -202,24 +211,27 @@ onUnmounted(() => cancelAnimationFrame(rafId))
 }
 
 @keyframes eco-l-ct-sequence {
-  /* Hold at saved slide-5 position while right eco walks to camera (0–27% = 0–16s) */
-  0%   { opacity: 1; transform: translateX(var(--eco-l-start-tx, 0px)); }
-  27%  { opacity: 1; transform: translateX(var(--eco-l-start-tx, 0px)); }
-  /* Walk off screen left over next ~14s (27–50% = 16–30s) */
-  50%  { opacity: 0; transform: translateX(-500px); }
+  /* While the right eco sets up the tripod: walk from the saved slide-5 position to just left of
+     the big tree at x≈337, so the right hand reaches the trunk (0–4.17% = 0–2.5s;
+     screen_x = 360 + translateX), attach the acoustic sensor (to 10.33% = 6.2s) */
+  0%      { opacity: 1; transform: translateX(var(--eco-l-start-tx, 0px)); }
+  4.17%   { opacity: 1; transform: translateX(-63px); }
+  10.33%  { opacity: 1; transform: translateX(-63px); }
+  /* Walk off screen left over next ~14s (10.33–33.33% = 6.2–20s) */
+  33.33%  { opacity: 0; transform: translateX(-500px); }
   100% { opacity: 0; transform: translateX(-500px); }
 }
 
 @keyframes eco-r-ct-sequence {
-  /* Walk from saved position to camera at x=850 (0–25% = 0–15s).
+  /* Walk from saved position to camera at x=850 (0–8.33% = 0–5s).
      screen_x = 1240 - CSS_translateX; so x=850 → translateX=390 */
-  0%   { opacity: 1; transform: translateX(var(--eco-r-start-tx, 0px)); }
-  25%  { opacity: 1; transform: translateX(390px); }
-  /* Hold to place tripod (25–27% = 15–16.2s) */
-  27%  { opacity: 1; transform: translateX(390px); }
-  /* Walk off screen right (27–50% = 16.2–30s).
+  0%      { opacity: 1; transform: translateX(var(--eco-r-start-tx, 0px)); }
+  8.33%   { opacity: 1; transform: translateX(390px); }
+  /* Hold to place tripod (8.33–10.33% = 5–6.2s) */
+  10.33%  { opacity: 1; transform: translateX(390px); }
+  /* Walk off screen right (10.33–33.33% = 6.2–20s).
      screen_x = 1240 - (-480) = 1720 */
-  50%  { opacity: 0; transform: translateX(-480px); }
+  33.33%  { opacity: 0; transform: translateX(-480px); }
   100% { opacity: 0; transform: translateX(-480px); }
 }
 
