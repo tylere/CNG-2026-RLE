@@ -110,12 +110,12 @@ onUnmounted(() => cancelAnimationFrame(rafId))
 .ecologist { opacity: 0; }
 
 .ecologist.eco-l {
-  animation: eco-l-wander 120s linear 2.5s both;
+  animation: eco-l-wander 120s linear 1s both;
   animation-play-state: var(--play-state, paused);
 }
 
 .ecologist.eco-r {
-  animation: eco-r-wander 120s linear 4.5s both;
+  animation: eco-r-wander 120s linear 3s both;
   animation-play-state: var(--play-state, paused);
 }
 
@@ -172,7 +172,7 @@ onUnmounted(() => cancelAnimationFrame(rafId))
 }
 
 @keyframes eco-l-wander {
-  0%    { opacity: 0; transform: translateX(-640px); }
+  0%    { opacity: 0; transform: translateX(-330px); }  /* just inside the slide edge, fading in */
   1%    { opacity: 1; }
   8%    { opacity: 1; transform: translateX(0); }
   18%   { transform: translateX(0); }
@@ -192,7 +192,7 @@ onUnmounted(() => cancelAnimationFrame(rafId))
 }
 
 @keyframes eco-r-wander {
-  0%    { opacity: 0; transform: translateX(-640px); }
+  0%    { opacity: 0; transform: translateX(-330px); }  /* just inside the slide edge, fading in */
   1%    { opacity: 1; }
   8%    { opacity: 1; transform: translateX(0); }
   20%   { transform: translateX(0); }

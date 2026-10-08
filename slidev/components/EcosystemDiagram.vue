@@ -28,7 +28,7 @@ const pebbles = [[920, 888, 3], [1030, 892, 4], [1150, 886, 2.5], [1270, 890, 3.
     <text class="label" x="800" y="100" text-anchor="middle">WHAT IS AN ECOSYSTEM?</text>
 
     <!-- Physical space -->
-    <g v-click="3">
+    <g v-click="4">
       <rect x="150" y="150" width="1300" height="640" rx="40"
             fill="rgba(242,244,246,0.03)" stroke="rgba(242,244,246,0.5)" stroke-width="3" stroke-dasharray="14 10"/>
       <text class="label" x="190" y="760">PHYSICAL SPACE</text>
@@ -56,16 +56,19 @@ const pebbles = [[920, 888, 3], [1030, 892, 4], [1150, 886, 2.5], [1270, 890, 3.
       <path d="M1108 340 A 30 30 0 1 1 1080 310" fill="none" stroke="#FFD626" stroke-width="4" :marker-end="`url(#${arrow})`"/>
     </g>
 
-    <!-- Interactions between them -->
+    <!-- Interactions between them: bottom arrow (abiotic → biotic), then top arrow (biotic → abiotic) -->
     <g v-click="2">
-      <path d="M685 305 Q 800 195 915 305" fill="none" stroke="#FFD626" stroke-width="5" stroke-linecap="round" :marker-end="`url(#${arrow})`"/>
       <path d="M915 615 Q 800 725 685 615" fill="none" stroke="#FFD626" stroke-width="5" stroke-linecap="round" :marker-end="`url(#${arrow})`"/>
-      <text x="800" y="215" text-anchor="middle" font-size="28px" font-weight="700" style="fill:#FFD626">interactions</text>
+      <text x="800" y="715" text-anchor="middle" font-size="28px" font-weight="700" style="fill:#FFD626">interactions</text>
+    </g>
+    <g v-click="3">
+      <path d="M685 305 Q 800 195 915 305" fill="none" stroke="#FFD626" stroke-width="5" stroke-linecap="round" :marker-end="`url(#${arrow})`"/>
     </g>
 
     <!-- Ecosystem engineers: biota that reshape the abiotic environment.
-         Animations start when v-click removes .slidev-vclick-hidden. -->
-    <g v-click="4" class="engineers">
+         Revealed with the top arc (click 3); then beaver, earthworms, coral and forest arrive
+         2, 4, 6 and 8 seconds later (--base per kind, plus each piece's own --d stagger). -->
+    <g v-click="3" class="engineers">
       <!-- Beaver peeking in from the left edge -->
       <g transform="translate(0 470)">
         <g class="beaver-peek">
@@ -214,9 +217,11 @@ const pebbles = [[920, 888, 3], [1030, 892, 4], [1150, 886, 2.5], [1270, 890, 3.
           <circle cx="1" cy="2" r="2" fill="#f6c4c4"/>
         </g>
       </g>
-      <path d="M880 900 L880 878 Q920 866 980 872 T1100 871 T1220 873 T1340 869 T1460 872 T1600 870 L1600 900 Z" fill="#4a3220"/>
-      <circle v-for="(p, k) in pebbles" :key="k" :cx="p[0]" :cy="p[1]" :r="p[2]" fill="#6b4d33"/>
-      <ellipse v-for="(x, i) in worms" :key="`hole${i}`" :cx="x" cy="873" rx="10" ry="4" fill="#22170e"/>
+      <g class="soil">
+        <path d="M880 900 L880 878 Q920 866 980 872 T1100 871 T1220 873 T1340 869 T1460 872 T1600 870 L1600 900 Z" fill="#4a3220"/>
+        <circle v-for="(p, k) in pebbles" :key="k" :cx="p[0]" :cy="p[1]" :r="p[2]" fill="#6b4d33"/>
+        <ellipse v-for="(x, i) in worms" :key="`hole${i}`" :cx="x" cy="873" rx="10" ry="4" fill="#22170e"/>
+      </g>
     </g>
   </svg>
 </template>
@@ -225,12 +230,19 @@ const pebbles = [[920, 888, 3], [1030, 892, 4], [1150, 886, 2.5], [1270, 890, 3.
 .beaver-peek,
 .worm-emerge,
 .coral-rise,
-.amazon-grow {
+.amazon-grow,
+.soil {
   animation-fill-mode: both;
-  animation-delay: var(--d, 0s);
+  animation-delay: calc(var(--base, 0s) + var(--d, 0s));
 }
+/* Arrival times after the top arc appears */
+.beaver-peek { --base: 2s; }
+.worm-emerge, .soil { --base: 4s; }
+.coral-rise  { --base: 6s; }
+.amazon-grow { --base: 8s; }
+.soil { opacity: 0; }
 .beaver-peek { transform: translateX(-170px); }
-.worm-emerge { transform: translateX(10px); }
+.worm-emerge { transform: translateX(10px); opacity: 0; }
 .coral-rise  { transform: translateY(130px); }
 .amazon-grow {
   transform: scale(0);
@@ -253,6 +265,11 @@ const pebbles = [[920, 888, 3], [1030, 892, 4], [1150, 886, 2.5], [1270, 890, 3.
   animation-duration: 1.5s;
   animation-timing-function: cubic-bezier(0.3, 1.3, 0.5, 1);
 }
+.engineers:not(.slidev-vclick-hidden) .soil {
+  animation-name: soil-in;
+  animation-duration: 0.6s;
+  animation-timing-function: ease-out;
+}
 .engineers:not(.slidev-vclick-hidden) .coral-rise {
   animation-name: coral-rise;
   animation-duration: 1.6s;
@@ -271,13 +288,19 @@ const pebbles = [[920, 888, 3], [1030, 892, 4], [1150, 886, 2.5], [1270, 890, 3.
 }
 
 @keyframes worm-emerge {
-  from { transform: translateX(10px); }
-  to   { transform: translateX(-70px); }
+  0%   { transform: translateX(10px); opacity: 0; }
+  1%   { opacity: 1; }
+  100% { transform: translateX(-70px); opacity: 1; }
 }
 
 @keyframes amazon-grow {
   from { transform: scale(0); }
   to   { transform: scale(1); }
+}
+
+@keyframes soil-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 @keyframes coral-rise {

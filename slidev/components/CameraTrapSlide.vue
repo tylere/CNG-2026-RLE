@@ -44,12 +44,15 @@ function unobstructed(eye: SVGGraphicsElement, animal: Element, root: SVGSVGElem
   for (const el of document.elementsFromPoint(r.left + r.width / 2, r.top + r.height / 2)) {
     if (el === eye || animal.contains(el)) return true
     if (el === root || !root.contains(el)) continue
-    if (el.closest('.day-night-overlay, .startled-eyes')) continue
+    if (el.closest('.day-night-overlay, .startled-eyes, .camera-trap')) continue  // thin tripod legs don't hide an eye
     if (effectiveOpacity(el, root) < 0.3) continue
     return false
   }
   return true
 }
+
+const lastPose = new WeakMap<Element, SVGCircleElement[]>()
+const blocked = new WeakMap<Element, number>()
 
 function trackEyes() {
   const g = startled.value
@@ -66,8 +69,13 @@ function trackEyes() {
       const pose = eye.closest('.peek, .night-pose, .drink') ?? animal!
       poses.set(pose, [...(poses.get(pose) ?? []), eye])
     }
-    const visible = [...poses.values()].find(pe =>
-      pe.every(eye => effectiveOpacity(eye, root) > 0.3 && insideClip(eye, root) && unobstructed(eye, animal!, root)))
+    const shown = (pe: SVGCircleElement[]) => pe.every(eye => effectiveOpacity(eye, root) > 0.3 && insideClip(eye, root))
+    let visible = [...poses.values()].find(pe => shown(pe) && pe.every(eye => unobstructed(eye, animal!, root)))
+    // Brief occlusions (a leg or branch passing in front) shouldn't make the eyes flicker:
+    // keep following the last pose for up to 10 frames while it's still shown.
+    const prev = lastPose.get(group)
+    if (visible) { lastPose.set(group, visible); blocked.set(group, 0) }
+    else if (prev && shown(prev) && (blocked.get(group) ?? 0) < 10) { visible = prev; blocked.set(group, (blocked.get(group) ?? 0) + 1) }
     group.setAttribute('visibility', visible ? 'visible' : 'hidden')
     if (!visible) continue
     group.querySelectorAll('.s-pt').forEach((pt, i) => {
@@ -135,29 +143,29 @@ onSlideLeave(() => {
       <Deer ref="deer" camera-trap :push="pushed" :style="{ '--deer-ct-delay': deerDelay, '--deer-push-delay': '0s' }" />
     </template>
     <CameraTrap :knocked="pushed" />
-    <!-- "Camera Trap" label fades in as the tripod grows at ~5s -->
+    <!-- "Automated sensors" label fades in as the tripod grows at ~5s -->
     <text class="ct-label" x="800" y="450" text-anchor="middle"
       font-size="80px" font-weight="700" fill="#F2F4F6" font-family="'iA Writer Quattro S', sans-serif">
-      Camera Trap
+      Automated sensors
     </text>
     <!-- Startled eyes: scale 3.5× at flash time, hold 3s, shrink back.
          Drawn above the night veil so they glow; each frame they're moved onto the
          animal's visible eyes (class="eye"), and hidden while the animal is out of sight. -->
     <g ref="startled" class="startled-eyes">
       <g class="s-eye" data-animal=".deer-container" visibility="hidden">
-        <g class="s-pt"><circle r="6" fill="#b8ff6a" opacity="0.22"/><circle r="2.4" fill="#b8ff6a"/></g>
+        <g class="s-pt"><g class="s-scale"><circle r="6" fill="#b8ff6a" opacity="0.22"/><circle r="2.4" fill="#b8ff6a"/></g></g>
       </g>
       <g class="s-eye" data-animal=".fox-container" visibility="hidden">
-        <g class="s-pt"><circle r="8" fill="#ffd84a" opacity="0.22"/><circle r="3.2" fill="#ffd84a"/></g>
-        <g class="s-pt"><circle r="8" fill="#ffd84a" opacity="0.22"/><circle r="3.2" fill="#ffd84a"/></g>
+        <g class="s-pt"><g class="s-scale"><circle r="8" fill="#ffd84a" opacity="0.22"/><circle r="3.2" fill="#ffd84a"/></g></g>
+        <g class="s-pt"><g class="s-scale"><circle r="8" fill="#ffd84a" opacity="0.22"/><circle r="3.2" fill="#ffd84a"/></g></g>
       </g>
       <g class="s-eye" data-animal=".rabbit-container" visibility="hidden">
-        <g class="s-pt"><circle r="7" fill="#ff9a6a" opacity="0.22"/><circle r="2.8" fill="#ff9a6a"/></g>
-        <g class="s-pt"><circle r="7" fill="#ff9a6a" opacity="0.22"/><circle r="2.8" fill="#ff9a6a"/></g>
+        <g class="s-pt"><g class="s-scale"><circle r="7" fill="#ff9a6a" opacity="0.22"/><circle r="2.8" fill="#ff9a6a"/></g></g>
+        <g class="s-pt"><g class="s-scale"><circle r="7" fill="#ff9a6a" opacity="0.22"/><circle r="2.8" fill="#ff9a6a"/></g></g>
       </g>
       <g class="s-eye" data-animal=".owl-container" visibility="hidden">
-        <g class="s-pt"><circle r="8" fill="#FFD626" opacity="0.22"/><circle r="3.2" fill="#FFD626"/></g>
-        <g class="s-pt"><circle r="8" fill="#FFD626" opacity="0.22"/><circle r="3.2" fill="#FFD626"/></g>
+        <g class="s-pt"><g class="s-scale"><circle r="8" fill="#FFD626" opacity="0.22"/><circle r="3.2" fill="#FFD626"/></g></g>
+        <g class="s-pt"><g class="s-scale"><circle r="8" fill="#FFD626" opacity="0.22"/><circle r="3.2" fill="#FFD626"/></g></g>
       </g>
     </g>
   </EcosystemScene>
@@ -178,8 +186,9 @@ onSlideLeave(() => {
 }
 
 /* Eyes snap to 3.5× at flash time (--ct-flash-delay inherited from ancestor SVG),
-   hold for 3s (60% of 5s), then shrink back to faintly visible */
-.startled-eyes .s-eye {
+   hold for 3s (60% of 5s), then shrink back to faintly visible.
+   Each eye scales about its own centre (.s-scale), so a pair doesn't spread apart. */
+.startled-eyes .s-scale {
   transform-box: fill-box;
   transform-origin: center;
   opacity: 0;

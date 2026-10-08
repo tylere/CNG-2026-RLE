@@ -6,13 +6,15 @@ const props = defineProps<{
 
 <template>
   <!-- Acoustic recorder strapped to the trunk of the large deciduous tree at (337, 814) -->
-  <g transform="translate(337 772)">
+  <!-- Scaled up and in safety orange so it reads clearly against the trunk and foliage -->
+  <g transform="translate(337 768) scale(1.9)">
     <g class="acoustic-sensor" :class="{ placed: props.placed }">
-      <rect x="-11" y="-2" width="22" height="4" rx="1" fill="#3a3528"/>
-      <rect x="-8" y="-11" width="16" height="22" rx="3" fill="#4f6b3a" stroke="#2c3a22" stroke-width="1.2"/>
-      <circle cx="0" cy="-4" r="3" fill="#1e1e1e"/>
-      <circle cx="0" cy="-4" r="1.4" fill="#555"/>
-      <circle class="as-led" cx="4" cy="6" r="1.4" fill="#5dff7a"/>
+      <rect x="-12" y="-2" width="24" height="4" rx="1" fill="#2a241b"/>
+      <rect x="-8" y="-11" width="16" height="22" rx="3" fill="#ff8c1a" stroke="#5a2e00" stroke-width="1.2"/>
+      <circle cx="0" cy="-4" r="3.2" fill="#1e1e1e"/>
+      <circle cx="0" cy="-4" r="1.5" fill="#666"/>
+      <rect x="-5" y="3" width="10" height="1.4" rx="0.7" fill="#5a2e00" opacity="0.6"/>
+      <circle class="as-led" cx="4" cy="7.5" r="1.5" fill="#5dff7a"/>
     </g>
   </g>
 </template>

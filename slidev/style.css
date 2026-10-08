@@ -465,7 +465,10 @@ svg.canvas .edge {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/images/hero_forest_coast.jpg') center / cover no-repeat;
+  /* Dark overlay over the photo so the title text stays readable */
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.6) 55%, rgba(0, 0, 0, 0.4) 100%),
+    url('/images/hero_forest_coast.jpg') center / cover no-repeat;
   animation: hero-zoom 18s ease-out both;
   transform-origin: center;
 }

@@ -62,7 +62,9 @@ layout: full-bleed
 </EcosystemScene>
 
 <!--
-"Ecosystems are complexes of organisms and their associated physical environment within a specified area (Tansley, 1935). They have four essential elements: a biotic complex, an abiotic environment, the interactions within and between them, and a physical space in which these operate (Pickett & Cadenasso, 1995)."
+- I am not an ecologist, by training.
+"Ecosystems are complexes of organisms and their associated physical environment within a specified area (Tansley, 1935). 
+- They have four essential elements: a biotic complex, an abiotic environment, the interactions within and between them, and a physical space in which these operate (Pickett & Cadenasso, 1995)."
 -->
 
 ---
@@ -74,14 +76,17 @@ layout: full-bleed
 <EcosystemDiagram />
 
 <!--
-Click 1: interactions within the biotic complex and within the abiotic environment.
-Click 2: interactions between them.
-Click 3: the physical space in which these operate.
-Click 4: ecosystem engineers (Jones, Lawton & Shachak, 1994): organisms that substantially reshape the abiotic environment. Beavers are the textbook case, alongside humans. Others:
-- Water and landforms: reef-building corals (reefs, lagoons, sand, wave buffering); mangroves, salt marsh and seagrass (trap sediment, build land); hippos (cut wetland channels); elephants (dig waterholes, convert woodland to grassland).
-- Soil: earthworms (Darwin's classic: mix soil, change structure and infiltration); termites (mounds pattern dryland landscapes); burrowing mammals like prairie dogs, gophers and aardvarks.
-- Atmosphere and climate: cyanobacteria (Great Oxidation Event, ~2.4 billion years ago); Amazon forests (recycle rainfall, "flying rivers"); marine phytoplankton (carbon pump, DMS and cloud formation).
-- Fire and peat: Sphagnum moss (acidifies, waterlogs, builds peat carbon stores); invasive grasses like cheatgrass and buffelgrass (grass–fire feedback).
+- composed of two main systems
+- [**C1**] Systems interact internally
+  - animals eat plants. animals eat other animals. some plants eat animals.
+  - water erodes rock and makes soil
+- **[C2]** Abiotic environment affects the biotic complex
+  - plants & animals need water & light
+  - fire, floods, drought are threats
+- **[C3]** Biotic -> Abiotic
+  - Anthropomorphic change
+  - Beavers affect water & land
+  - Coral, mangroves affects oceans
 -->
 
 ---
@@ -93,12 +98,13 @@ layout: full-bleed
 <MeasureEcosystemsSlide />
 
 <!--
-To assess ecosystem risk we need to measure what's happening on the ground. Field ecologists collect data: species counts, vegetation surveys, photographs, and physical samples — combined with satellite imagery and remote sensing to scale up to the country level.
+Field measurements
+- species counts, vegetation surveys, photographs, and physical samples
 -->
 
 ---
 id: slide-camera-trap
-title: Camera Traps
+title: Automated sensors
 layout: full-bleed
 clicks: 1
 ---
@@ -137,7 +143,7 @@ layout: full-bleed
 <div style="position:absolute; left:660px; top:0; bottom:0; display:flex; flex-direction:column; justify-content:center; gap:1.4rem">
   <span class="eyebrow a-rise">International Union for Conservation of Nature</span>
   <span class="statement a-rise" style="--d:0.2s; font-size:4em">IUCN</span>
-  <span class="statement-sub a-rise" style="--d:0.4s">Independent</span>
+  <span class="statement-sub a-rise" style="--d:0.4s">Independent Organization</span>
   <span class="statement-sub a-rise" style="--d:0.6s">Founded <span class="hl">1948</span></span>
   <span class="statement-sub a-rise" style="--d:0.8s">UN General Assembly <span class="hl">observer</span></span>
 </div>
@@ -151,6 +157,26 @@ layout: full-bleed
 <!--
 Who cares about conservation?
 At the international level...
+-->
+
+---
+id: slide-question
+title: How At Risk?
+layout: full-bleed
+---
+
+<div style="position:absolute; right:80px; top:40px; opacity:0.85">
+  <img src="/images/colombia_ecosystems.png" height="820" alt="Map of Colombia's ecosystems, each in a distinct color" />
+</div>
+
+<div style="position:absolute; left:100px; top:220px" class="left-v">
+  <span class="statement a-rise" style="font-size:4em">How at risk</span>
+  <span class="statement a-rise" style="--d:0.3s; font-size:4em">are a country's</span>
+  <span class="statement hl a-rise" style="--d:0.6s; font-size:4em">ecosystems?</span>
+</div>
+
+<!--
+TODO
 -->
 
 ---
@@ -283,7 +309,8 @@ layout: full-bleed
 <div style="position:absolute; left:820px; width:680px; top:0; bottom:0; display:flex; flex-direction:column; justify-content:center; gap:1.4rem">
   <span class="eyebrow a-rise">IUCN Red List of Ecosystems</span>
   <span class="statement a-rise" style="--d:0.2s">Ecosystem Assessment Guidelines</span>
-  <span class="statement-sub a-rise" style="--d:0.4s">· <span class="hl">Published 2024</span></span></div>
+  <span class="statement-sub a-rise" style="--d:0.4s">· <span class="hl">Published 2024</span></span>
+  <span class="statement-sub a-rise" style="--d:0.6s">· How to assess an ecosystem's <span class="hl">risk of collapse</span></span></div>
 
 <!--
 TODO
@@ -304,12 +331,36 @@ url: https://global-ecosystems.org/explore
 -->
 
 ---
+id: slide-subterranean-voids
+title: Anthropogenic Subterranean Voids
+layout: full-bleed
+---
+
+<div style="position:absolute; inset:0; overflow:hidden">
+  <img src="/images/granite_mountain_vaults.jpg" style="width:100%; height:100%; object-fit:cover" alt="Lit arched tunnel entrances cut into a granite cliff face at dusk" />
+  <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 40%)"></div>
+</div>
+
+<div class="a-rise" style="--d:0.4s; position:absolute; left:80px; bottom:64px">
+  <div class="statement" style="font-size:3em; line-height:1.1">Anthropogenic Subterranean voids (S2.1)</div>
+  <div class="statement-sub muted" style="margin-top:0.4rem">(Mormon Vaults)</div>
+</div>
+
+<!--
+TODO
+-->
+
+---
 id: slide-covers
 title: Country Assessments
 layout: full-bleed
 ---
 
-<div class="covers" style="height:100%; align-items:center">
+<div class="a-rise" style="position:absolute; top:36px; left:0; right:0; text-align:center">
+  <span class="statement">Ecosystem Assessment Reports</span>
+</div>
+
+<div class="covers" style="height:100%; align-items:center; padding-top:80px; box-sizing:border-box">
   <div class="tilt-l a-rise" style="--d:0.1s">
     <a href="https://www.conservation.org.co/media/A7.LRE-Colombia_INFORME%20FINAL_%202017.pdf" target="_blank" class="book" style="--pages:142"><img src="/images/colombia_2017_cover.jpg" alt="Cover of the 2017 Colombia Red List of Ecosystems report" /></a>
     <div class="statement-sub" style="text-align:center; margin-top:1.5rem"><span class="hl">142</span> pages</div>
@@ -332,8 +383,8 @@ layout: full-bleed
 ---
 
 <div class="center-v" style="height:100%; gap:2.4rem">
-  <span class="statement a-rise">So how's it going?</span>
-  <span v-click class="statement-sub">(i.e. a preview of what will be discussed at COP 17 in two week) </span>
+  <span class="statement a-rise" style="font-size:110px !important; line-height:1.05">So how's it going?</span>
+  <span class="statement-sub a-fade" style="--d:1.2s">(i.e. a preview of what will be discussed at COP 17 in two weeks) </span>
 </div>
 
 <!--
@@ -354,12 +405,14 @@ layout: full-bleed
 </div>
 
 <!-- Figure 1, overlapping the paper -->
-<div style="left:448px; top:196px" class="fig-card" v-click="1">
+<div style="left:448px; top:196px; --d:1.5s" class="fig-card a-fade">
   <img src="/images/buschke_fig1_reporting_status.png" style="width:680px; height:auto; display:block" alt="Figure 1 from Buschke et al.: reporting status for Indicator A.2 across the 196 Parties to the CBD — 31.1% did not submit a 7th National Report, 29.1% did not report A.2, 9.2% incomplete, 30.6% complete" />
+  <!-- Highlight the "Complete Indicator A.2 (30.6%)" legend entry, before the Figure 2 highlights -->
+  <div class="fig-hl fig-hl-first" style="left:542px; top:12px; width:152px; height:38px"></div>
 </div>
 
 <!-- Figure 2, overlapping Figure 1's caption -->
-<div style="left:448px; top:490px" class="fig-card" v-click="2">
+<div style="left:448px; top:490px" class="fig-card fig2" v-click="1">
   <img src="/images/buschke_fig2_sources_disaggregation.png" style="width:680px; height:auto; display:block" alt="Figure 2 from Buschke et al.: (a) data sources and (b) type of disaggregation used by the 78 Parties that reported Indicator A.2 — land cover and ecosystem maps are the most common sources; most Parties reported no disaggregation" />
   <!-- Highlights (positions are the figure's pixels × 680/1456, plus the 12px card padding) -->
   <div class="fig-hl" style="left:40px; top:74px; width:229px; height:30px"></div>
@@ -367,7 +420,7 @@ layout: full-bleed
 </div>
 
 <!-- Callout: few national reports are based on ecosystem maps (Buschke et al.: 19 of 196 Parties) -->
-<div v-click="3" style="position:absolute; left:60px; top:520px; width:360px">
+<div class="after-fig2" v-click="1" style="--d:1.5s; position:absolute; left:60px; top:520px; width:360px">
   <div style="border:3px solid #FFD626; border-radius:12px; padding:1.1rem 1.3rem; background:rgba(29,35,43,0.92)">
     <div class="statement" style="font-size:2.4em; line-height:1.1"><span class="hl">19</span> of 196</div>
     <div class="statement-sub" style="margin-top:0.4rem">Parties based A.2 on an <span class="hl">ecosystem map</span></div>
@@ -379,7 +432,7 @@ layout: full-bleed
 </div>
 
 <!-- Callout: few disaggregate by the Global Ecosystem Typology (Buschke et al.: 15 Parties) -->
-<div v-click="4" style="position:absolute; left:1180px; top:520px; width:360px">
+<div class="after-fig2" v-click="1" style="--d:3s; position:absolute; left:1180px; top:520px; width:360px">
   <div style="border:3px solid #FFD626; border-radius:12px; padding:1.1rem 1.3rem; background:rgba(29,35,43,0.92)">
     <div class="statement" style="font-size:2.4em; line-height:1.1"><span class="hl">15</span> of 196</div>
     <div class="statement-sub" style="margin-top:0.4rem">Parties disaggregated A.2 by the <span class="hl">GET</span></div>
@@ -400,7 +453,7 @@ layout: full-bleed
   border-radius: 10px;
   box-shadow: 0 0 36px rgba(0, 0, 0, 0.6);
 }
-/* Highlights fade in shortly after Figure 2 is revealed (no extra click) */
+/* Highlights: the Figure 1 legend entry fades in at 2.6s; Figure 2's fade in shortly after its click */
 .fig-hl {
   opacity: 0;
   position: absolute;
@@ -409,15 +462,21 @@ layout: full-bleed
   background: rgba(255, 214, 38, 0.18);
   box-shadow: 0 0 12px rgba(255, 214, 38, 0.6);
 }
-.fig-card:not(.slidev-vclick-hidden) .fig-hl {
+.fig-hl.fig-hl-first {
+  animation: fade-in 0.6s ease-out 2.6s both; /* shortly after Figure 1 appears */
+}
+.fig2:not(.slidev-vclick-hidden) .fig-hl {
   animation: fade-in 0.6s ease-out 0.8s both;
+}
+/* Callouts follow Figure 2's click, one after the other (--d set on each) */
+.after-fig2 { opacity: 0; }
+.after-fig2:not(.slidev-vclick-hidden) {
+  animation: fade-in 0.6s ease-out var(--d, 0s) both;
 }
 </style>
 
 <!--
-Click 3: of the 78 Parties that reported A.2, 25 (32.1%) used land cover data and 19 (24.4%) national ecosystem maps; i.e. only 19 of 196 Parties (~10%) based A.2 on an ecosystem map. Authors: "Parties should aspire to develop their own national ecosystem maps".
-Click 4: 48 Parties (61.5%) disaggregated A.2 at all; 16 (20.5%) by national ecosystem classifications and 15 (19.2%) by GET level 3 (ecosystem functional groups) — only 15 of 196 Parties.
-Source of images: Buschke et al., "Reporting on the extent of natural ecosystems under the Kunming-Montreal Global Biodiversity Framework" — https://doi.org/10.32942/X25955
+Source of images: Buschke et al., "**Reporting on the extent of natural ecosystems under the Kunming-Montreal Global Biodiversity Framework**"
 - Available on eco-evo-archive
 - 29% of countries reported on A.2 (extent of natural ecosystems)
 - Only 19 countries based their estimate on an ecosystem map
@@ -452,6 +511,36 @@ TODO
 -->
 
 ---
+id: slide-github-org
+title: RLE Assessment on GitHub
+layout: full-bleed
+---
+
+<div class="center-v a-rise" style="height:100%">
+  <a href="https://github.com/rle-assessment" target="_blank" class="frame">
+    <img src="/images/github_rle_assessment.jpg" style="height:700px; width:auto; display:block" alt="The RLE Assessment GitHub organization page, with a README describing tools for building IUCN Red List of Ecosystems assessment reports" />
+  </a>
+</div>
+
+<a href="https://github.com/rle-assessment" target="_blank" style="position:absolute; bottom:40px; right:80px" class="mono muted">github.com/rle-assessment</a>
+
+<!--
+TODO
+-->
+
+---
+id: slide-auth-dance
+title: The Hard Part
+layout: full-bleed
+---
+
+<AuthDance />
+
+<!--
+The hardest part isn't the geospatial computation: it's setting up authentication so Google (Earth Engine / Cloud), GitHub (Actions), the CDN, and object storage can all work together.
+-->
+
+---
 id: slide-colombia-site
 title: Colombia Assessment Site
 layout: iframe
@@ -463,8 +552,8 @@ TODO
 -->
 
 ---
-id: slide-wildlife-insights
-title: Wildlife Insights
+id: slide-colombia-site (screenshot)
+title: Colombia Assessment Site (screenshot)
 layout: full-bleed
 ---
 
@@ -477,32 +566,31 @@ Wildlife Insights is an AI-powered platform that helps researchers process and s
 -->
 
 ---
-id: slide-ecosystems-atlas
-title: Global Ecosystems Atlas
+id: slide-architecture-recap
+title: Architecture (recap)
 layout: full-bleed
 ---
 
-<div style="position:absolute; left:100px; width:560px; top:0; bottom:0; display:flex; flex-direction:column; justify-content:center; gap:1.4rem">
-  <span class="eyebrow a-rise">Group on Earth Observations</span>
-  <span class="statement a-rise" style="--d:0.2s; font-size:3.4em">Global Ecosystems Atlas</span>
-  <div class="stats a-rise" style="--d:0.4s">
-    <div><span class="num" style="font-size:4rem">110</span><span class="unit">ecosystem functional groups</span></div>
-    <div><span class="num" style="font-size:4rem">25</span><span class="unit">biomes</span></div>
-    <div><span class="num" style="font-size:4rem">10</span><span class="unit">realms</span></div>
-  </div>
-  <a href="https://doi.org/10.32942/X22Q3M" target="_blank" class="mono muted a-fade" style="--d:0.8s">Murray et al. 2026 · doi.org/10.32942/X22Q3M</a>
-</div>
+<ArchitectureDiagram no-clicks highlight-maps />
 
-<div style="position:absolute; right:80px; top:0; bottom:0; display:flex; align-items:center" class="a-rise">
-  <a href="https://www.globalecosystemsatlas.org/" target="_blank" class="frame">
-    <img src="/images/global_ecosystems_atlas.jpg" style="width:780px; height:auto; display:block" alt="Home page of the Global Ecosystems Atlas: a global partnership advancing ecosystem intelligence" />
-  </a>
+<!--
+Repeat of the architecture slide, fully revealed.
+-->
+
+---
+id: slide-need-maps
+title: We Need Ecosystem Maps
+layout: full-bleed
+---
+
+<div class="center-v" style="height:100%; gap:2.2rem">
+  <span class="statement a-rise" style="font-size:120px !important; line-height:1.05; text-align:center">We need <span class="hl">ecosystem maps</span></span>
+  <span v-click class="statement-sub" style="font-size:56px !important">When do we need them?</span>
+  <span v-click class="statement hl" style="font-size:220px !important; line-height:1">NOW!</span>
 </div>
 
 <!--
-Preprint: Murray et al., "The Global Ecosystems Atlas: comprehensive and systematic mapping of Earth's ecosystems", EcoEvoRxiv, posted 31 July 2026 — https://doi.org/10.32942/X22Q3M (https://ecoevorxiv.org/repository/view/14123/)
-Open-access dataset of 110 ecosystem functional groups, 25 biomes, and 10 realms; supports monitoring aligned with the KMGBF.
-Site: https://www.globalecosystemsatlas.org/
+TODO
 -->
 
 ---
@@ -576,6 +664,74 @@ TODO
 -->
 
 ---
+id: slide-ecosystems-atlas
+title: Global Ecosystems Atlas
+layout: full-bleed
+---
+
+<div style="position:absolute; left:100px; width:560px; top:0; bottom:0; display:flex; flex-direction:column; justify-content:center; gap:1.4rem">
+  <span class="eyebrow a-rise">Group on Earth Observations</span>
+  <span class="statement a-rise" style="--d:0.2s; font-size:3.4em">Global Ecosystems Atlas</span>
+  <span class="statement-sub a-rise" style="--d:0.4s">Helping countries develop the capacity to produce <span class="hl">ecosystem maps</span> with tools and trainings</span>
+  <a href="https://doi.org/10.32942/X22Q3M" target="_blank" class="mono muted a-fade" style="--d:0.8s">Murray et al. 2026 · doi.org/10.32942/X22Q3M</a>
+</div>
+
+<div style="position:absolute; right:80px; top:0; bottom:0; display:flex; align-items:center" class="a-rise">
+  <a href="https://www.globalecosystemsatlas.org/" target="_blank" class="frame">
+    <img src="/images/global_ecosystems_atlas.jpg" style="width:780px; height:auto; display:block" alt="Home page of the Global Ecosystems Atlas: a global partnership advancing ecosystem intelligence" />
+  </a>
+</div>
+
+<!-- Partner logos, as shown on globalecosystemsatlas.org -->
+<div class="a-fade" style="--d:1.2s; position:absolute; left:0; right:0; bottom:40px; display:flex; flex-direction:column; align-items:center; gap:10px">
+  <span class="mono muted" style="font-size:0.75em; letter-spacing:0.08em; align-self:flex-start; margin-left:250px">Powered by a world-class technical consortium and partners</span>
+  <div style="display:flex; align-items:center; gap:48px; background:#f1f1f1; border-radius:12px; padding:16px 36px">
+    <img src="/images/atlas_partners/cbd.png" alt="Convention on Biological Diversity" style="height:44px; width:auto; display:block" />
+    <img src="/images/atlas_partners/iucn.png" alt="IUCN" style="height:44px; width:auto; display:block" />
+    <img src="/images/atlas_partners/jcu.svg" alt="James Cook University" style="height:44px; width:auto; display:block" />
+    <img src="/images/atlas_partners/esa.png" alt="European Space Agency" style="height:44px; width:auto; display:block" />
+    <img class="partner-hl" src="/images/atlas_partners/google.png" alt="Google" style="height:44px; width:auto; display:block" />
+    <img class="partner-hl" src="/images/atlas_partners/ai2.png" alt="Allen Institute for AI" style="height:44px; width:auto; display:block" />
+    <img src="/images/atlas_partners/esri.png" alt="Esri" style="height:44px; width:auto; display:block" />
+  </div>
+</div>
+
+<!-- Callout: Google and Ai2 contribute geospatial embeddings -->
+<div class="a-fade" style="--d:3s; position:absolute; left:860px; top:668px; border:3px solid #FFD626; border-radius:12px; padding:0.35rem 1.2rem; background:rgba(29,35,43,0.95)">
+  <span class="statement hl" style="font-size:2em; line-height:1.1">geo embeddings!</span>
+</div>
+<svg class="a-fade" viewBox="0 0 1600 900" style="--d:3s; position:absolute; inset:0; width:100%; height:100%; pointer-events:none">
+  <path d="M925 725 L900 768" stroke="#FFD626" stroke-width="4" stroke-linecap="round"/>
+  <path d="M893 780 L893 765 L907 772 Z" fill="#FFD626"/>
+  <path d="M1035 725 L1060 768" stroke="#FFD626" stroke-width="4" stroke-linecap="round"/>
+  <path d="M1067 780 L1053 772 L1067 765 Z" fill="#FFD626"/>
+</svg>
+
+<style>
+/* Highlight Google and Ai2 in the partner strip, shortly after it appears */
+.partner-hl {
+  outline: 6px solid transparent;
+  outline-offset: 8px;
+  border-radius: 8px;
+  animation: partner-hl 0.6s ease-out 2s both, partner-pulse 1.6s ease-in-out 2.6s 3;
+}
+@keyframes partner-hl {
+  from { outline-color: transparent; box-shadow: 0 0 0 0 rgba(255,214,38,0); transform: scale(1); }
+  to   { outline-color: #FFD626; box-shadow: 0 0 34px 18px rgba(255,214,38,0.8); transform: scale(1.12); }
+}
+@keyframes partner-pulse {
+  0%, 100% { box-shadow: 0 0 34px 18px rgba(255,214,38,0.8); }
+  50%      { box-shadow: 0 0 52px 28px rgba(255,214,38,1); }
+}
+</style>
+
+<!--
+Preprint: Murray et al., "The Global Ecosystems Atlas: comprehensive and systematic mapping of Earth's ecosystems", EcoEvoRxiv, posted 31 July 2026 — https://doi.org/10.32942/X22Q3M (https://ecoevorxiv.org/repository/view/14123/)
+Open-access dataset of 110 ecosystem functional groups, 25 biomes, and 10 realms; supports monitoring aligned with the KMGBF.
+Site: https://www.globalecosystemsatlas.org/
+-->
+
+---
 id: slide-cloud-optimized
 title: Cloud-Optimized Formats
 layout: full-bleed
@@ -591,23 +747,32 @@ TODO
 -->
 
 ---
-id: slide-question
-title: How At Risk?
+id: slide-whats-next
+title: What's Next
 layout: full-bleed
 ---
 
-<div style="position:absolute; right:80px; top:40px; opacity:0.85">
-  <img src="/images/colombia_ecosystems.png" height="820" alt="Map of Colombia's ecosystems, each in a distinct color" />
+<div style="position:absolute; left:100px; width:820px; top:0; bottom:0; display:flex; flex-direction:column; justify-content:center; gap:1.6rem">
+  <span class="statement a-rise" style="font-size:4em">What's next</span>
+  <ul class="lessons" style="margin-top:0.6rem; font-size:1.7em">
+    <li v-click.fade>Prototype → <span class="hl">IUCN Red List of Ecosystems</span> team</li>
+    <li v-click.fade>RLE calculations from Python → <span class="hl">Rust</span></li>
+    <li v-click.fade>Teach countries the <span class="hl">Portolan</span> dance</li>
+  </ul>
 </div>
 
-<div style="position:absolute; left:100px; top:220px" class="left-v">
-  <span class="statement a-rise" style="font-size:4em">How at risk</span>
-  <span class="statement a-rise" style="--d:0.3s; font-size:4em">are a country's</span>
-  <span class="statement hl a-rise" style="--d:0.6s; font-size:4em">ecosystems?</span>
+<div class="a-fade" style="--d:0.6s; position:absolute; right:40px; top:60px; width:700px; height:760px">
+  <PortolanDisco :start="$clicks >= 3" />
 </div>
+
+<style>
+/* Bullets start faded and become bright on their click */
+#slide-whats-next .lessons li { transition: opacity 0.6s ease-out; }
+#slide-whats-next .lessons li.slidev-vclick-fade { opacity: 0.22; }
+</style>
 
 <!--
-TODO
+Click 1–3: each bullet brightens. Click 3 (Portolan) also starts the dance floor sequence.
 -->
 
 ---
