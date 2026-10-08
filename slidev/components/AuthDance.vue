@@ -4,9 +4,12 @@
 import { reactive, computed, watch, onUnmounted } from 'vue'
 import { useNav, useSlideContext } from '@slidev/client'
 
+// Icon URLs are bound at runtime, so prefix the site's base path (e.g. /CNG-2026-RLE/ on GitHub Pages)
+const BASE = import.meta.env.BASE_URL
+
 const dancers = [
-  { key: 'gcp', label: 'Google Cloud', icon: '/images/google_cloud_mark.svg' },
-  { key: 'github', label: 'GitHub', icon: '/images/github_mark.svg' },
+  { key: 'gcp', label: 'Google Cloud', icon: `${BASE}images/google_cloud_mark.svg` },
+  { key: 'github', label: 'GitHub', icon: `${BASE}images/github_mark.svg` },
   { key: 'cdn', label: 'CDN' },
   { key: 'storage', label: 'Object storage' },
   { key: 'dev', label: 'Dev environment' },

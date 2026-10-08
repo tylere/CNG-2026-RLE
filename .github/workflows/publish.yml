@@ -29,7 +29,8 @@ jobs:
         working-directory: slidev
 
       - name: Build Slidev presentation
-        run: pnpm build --base /
+        # Served as a GitHub Pages project site at https://tylere.github.io/CNG-2026-RLE/
+        run: pnpm build --base /CNG-2026-RLE/
         working-directory: slidev
 
       - name: Deploy to GitHub Pages
