@@ -1,0 +1,1 @@
+import{o as t,a as o,ag as s}from"./modules/vue-BX9FQwuo.js";import{_ as a,G as l}from"./index-Copze0mb.js";const r={class:"full-bleed-layout"},c={__name:"full-bleed",setup(n){return l(),(e,_)=>(t(),o("div",r,[s(e.$slots,"default",{},void 0,!0)]))}},f=a(c,[["__scopeId","data-v-2772af3c"]]);export{f as I};
