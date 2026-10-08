@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "slidev --open",
-    "build": "slidev build --base /",
+    "build": "slidev build",
     "export": "slidev export",
     "type-check": "vue-tsc --noEmit",
     "test": "vitest run"
