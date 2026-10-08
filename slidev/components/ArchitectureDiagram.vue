@@ -39,7 +39,7 @@ const arrow = `url(#${arrowId})`
     <!-- Data + calculations -->
     <g v-click="!props.noClicks">
       <rect class="node" x="1060" y="60" width="440" height="190" rx="14"/>
-      <image href="../images/colombia_ecosystems.png" x="1350" y="72" width="122" height="166"/>
+      <image href="/images/colombia_ecosystems.png" x="1350" y="72" width="122" height="166"/>
       <text x="1090" y="140" font-size="34px" font-weight="700">Ecosystem</text>
       <text x="1090" y="184" font-size="34px" font-weight="700">map data</text>
       <path class="edge draw" pathLength="1" :marker-end="arrow" d="M910 215 C 990 215, 990 390, 1060 390"/>
